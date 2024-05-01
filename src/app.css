@@ -4,7 +4,7 @@
     font-weight: 400;
 }
 
-*{
+body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,5 +13,14 @@
 a{
     text-decoration: none;
     color: black;
+}
+.widgetCircle::before{
+    content: "";
+    position: absolute;
+    height: 4rem;
+    width: 4rem;
+    background: white;
+    border-radius: 100%;
+
 }
 
