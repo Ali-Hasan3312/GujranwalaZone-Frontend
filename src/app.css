@@ -23,4 +23,58 @@ a{
     border-radius: 100%;
 
 }
+.table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.table > td{
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle;
 
+}
+
+  tr {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.093);
+  }
+  
+  td {
+    padding: 1rem;
+  }
+tbody > img{
+    width: 4rem;
+    height: 4rem;
+    object-fit: contain;
+    border-radius: 10px;
+}
+tbody > a {
+    text-decoration: none;
+        background-color: rgba(44, 104, 255, 0.455);
+        color: rgba(44, 104, 255);
+        padding: 0.25rem 0.5rem;
+        border-radius: 10px;
+}
+tbody > button {
+    width: 2rem;
+        height: 2rem;
+        font-size: 1.1rem;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: rgb(255, 44, 44);
+}
+tbody > button:hover {
+    opacity: 0.6;
+}
+tbody > button:first-child{
+    border-left: none;
+}
+tbody > button:last-child{
+    border-right: none;
+}
+/* .transaction-box{
+    width: 100%;
+    padding: 1rem;
+    overflow-x: auto;
+} */
