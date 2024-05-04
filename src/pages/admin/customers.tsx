@@ -1,19 +1,102 @@
-import { BsSearch } from 'react-icons/bs'
-import { FaRegBell } from 'react-icons/fa'
-import userImg from "../../assets/images/userpic.png"
+import { ReactElement, useCallback, useState } from 'react'
 import AdminSideBar from '../../components/adminSideBar'
+import { Column } from 'react-table'
+import TableHOC from '../../components/tableHOC'
+import { FaTrash } from 'react-icons/fa'
+
+interface DataType{
+  avatar: ReactElement,
+  name: string,
+  role: string,
+  gender: string,
+  email: string,
+  action: ReactElement
+  }
+  
+  const columns: Column<DataType>[] = [
+    {
+      Header: 'Avatar',
+      accessor: "avatar"
+    },
+    {
+      Header: 'Name',
+      accessor: "name"
+    },
+    {
+      Header: 'Gender',
+      accessor: "gender"
+    },
+    {
+      Header: 'Email',
+      accessor: "email"
+    },
+    {
+      Header: 'Role',
+      accessor: "role"
+    },
+    {
+      Header: 'Action',
+      accessor: "action"
+    },
+  ]
+  const img = "https://randomuser.me/api/portraits/women/54.jpg";
+const img2 = "https://randomuser.me/api/portraits/women/50.jpg";
+
+  const arr : DataType[] = [
+    {
+      avatar: (
+        <img
+        className=' h-16 w-16 object-contain rounded-full'
+          src={img}
+          alt="Shoes"
+        />
+      ),
+      name: "Emily Palmer",
+      email: "emily.palmer@example.com",
+      gender: "female",
+      role: "user",
+      action: (
+        <button>
+          <FaTrash className=' text-red-600 hover:opacity-60' />
+        </button>
+      ),
+    },
+  
+    {
+      avatar: (
+        <img
+        className=' h-16 w-16 object-contain rounded-full'
+          src={img2}
+          alt="Shoes"
+        />
+      ),
+      name: "May Scoot",
+      email: "aunt.may@example.com",
+      gender: "female",
+      role: "user",
+      action: (
+        <button>
+          <FaTrash className=' text-red-600 hover:opacity-60' />
+        </button>
+      ),
+    },
+  ]
 const Customers = () => {
+  const [data] = useState<DataType[]>(arr)
+  const Table = useCallback(
+    TableHOC<DataType>(
+      columns,
+      data,
+      "Customers",
+      true
+    ),[]
+  )
   return (
     <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
     <AdminSideBar />
     
     <main className=' overflow-y-auto w-full'>
-      <div className=' h-10 px-2 py-4 flex-row border-b-2 border-black border-opacity-35 border-solid flex content-center items-center gap-4'>
-        <BsSearch />
-        <input type="text" placeholder='Search for data, users, docs' className=' mr-auto w-full py-4 px-0 border-none outline-none bg-inherit' />
-        <FaRegBell className=' opacity-70 text-sm'/>
-        <img src={userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
-      </div>
+     {Table()}
       
     </main>
     </div>
