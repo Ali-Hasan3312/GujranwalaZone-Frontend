@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Loader from "./components/loader"
+
 // const Home   = lazy(()=> import("./pages/home")) 
 // const Search = lazy(()=> import("./pages/search"))   
 // const Cart   = lazy(()=> import("./pages/cart")) 
@@ -9,6 +10,10 @@ const Dashboard   = lazy(()=> import("./pages/admin/dashboard"))
 const Customers   = lazy(()=> import("./pages/admin/customers")) 
 const Products   = lazy(()=> import("./pages/admin/products.tsx")) 
 const Transaction   = lazy(()=> import("./pages/admin/transaction.tsx")) 
+const NewProduct   = lazy(()=> import("./pages/admin/management/newProduct.tsx")) 
+const ProductManagement   = lazy(()=> import("./pages/admin/management/productManagement.tsx")) 
+const TransactionManagement   = lazy(()=> import("./pages/admin/management/transactionManagement.tsx")) 
+
 function App() {
  
 
@@ -23,6 +28,15 @@ function App() {
       <Route path="/admin/customers" element={<Customers />} />
       <Route path="/admin/products" element={<Products />} />
       <Route path="/admin/transaction" element={<Transaction />} />
+
+      {/* Charts */}
+
+      {/* Apps */}
+
+      {/* Management */}
+      <Route path="/admin/products/new" element={<NewProduct />} />
+      <Route path="/admin/products/:id" element={<ProductManagement />} />
+      <Route path="/admin/transaction/:id" element={<TransactionManagement />} />
 
     </Routes>
     </Suspense>

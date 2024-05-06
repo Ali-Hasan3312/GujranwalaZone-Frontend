@@ -1,19 +1,89 @@
-import { BsSearch } from 'react-icons/bs'
-import { FaRegBell } from 'react-icons/fa'
-import userImg from "../../assets/images/userpic.png"
+import { ReactElement, useCallback, useState } from 'react'
 import AdminSideBar from '../../components/adminSideBar'
+import { Column } from 'react-table'
+import TableHOC from '../../components/tableHOC'
+import { Link } from 'react-router-dom'
+
+
+interface DataType{
+  user: string,
+  
+  amount: number,
+  discount: number,
+  quantity: number,
+  status: ReactElement,
+  action: ReactElement
+  }
+  
+  const columns: Column<DataType>[] = [
+    {
+      Header: 'User',
+      accessor: "user"
+    },
+    {
+      Header: 'Amount',
+      accessor: "amount"
+    },
+    {
+      Header: 'Discount',
+      accessor: "discount"
+    },
+    {
+      Header: 'Quantity',
+      accessor: "quantity"
+    },
+    {
+      Header: 'Status',
+      accessor: "status"
+    },
+    {
+      Header: 'Action',
+      accessor: "action"
+    },
+  ]
+  
+  const arr: DataType[] = [
+    {
+      user: "Charas",
+      amount: 4500,
+      discount: 400,
+      quantity: 3,
+      status: <span className=" text-red-600">Processing</span>,
+      action: <Link to="/admin/transaction/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
+    },
+    {
+      user: "Xavirors",
+      amount: 6999,
+      discount: 400,
+      status: <span className=" text-green-600">Shipped</span>,
+      quantity: 6,
+      action: <Link to="/admin/transaction/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
+    },
+    {
+      user: "Xavirors",
+      amount: 6999,
+      discount: 400,
+      status: <span className=" text-purple-600">Delivered</span>,
+      quantity: 6,
+      action: <Link to="/admin/transaction/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
+    },
+  ]
 const Transaction = () => {
+  const [data] = useState<DataType[]>(arr)
+  const Table = useCallback(
+    TableHOC<DataType>(
+      columns,
+      data,
+      "Transactions",
+      true
+    ),[])
   return (
+    
     <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
     <AdminSideBar />
     
     <main className=' overflow-y-auto w-full'>
-      <div className=' h-10 px-2 py-4 flex-row border-b-2 border-black border-opacity-35 border-solid flex content-center items-center gap-4'>
-        <BsSearch />
-        <input type="text" placeholder='Search for data, users, docs' className=' mr-auto w-full py-4 px-0 border-none outline-none bg-inherit' />
-        <FaRegBell className=' opacity-70 text-sm'/>
-        <img src={userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
-      </div>
+      {Table()}
     </main>
     </div>
   )

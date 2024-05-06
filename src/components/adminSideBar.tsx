@@ -20,19 +20,19 @@ const AdminSideBar = () => {
 
             </li>
             <li className=' py-1 px-4 rounded-lg'>
-                <Link to={"/admin/products"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname==='/admin/products'? 'text-red-500' : 'text-black'}`}>
+                <Link to={"/admin/products"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname.includes('/admin/products')? 'text-red-500' : 'text-black'} `}>
                 <RiShoppingBag3Fill />
                 Products
                 </Link>
             </li>
             <li className=' py-1 px-4 rounded-lg'>
-                <Link to={"/admin/customers"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname==='/admin/customers'? 'text-red-500' : 'text-black'}`}>
+                <Link to={"/admin/customers"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname.includes('/admin/customers')? 'text-red-500' : 'text-black'}`}>
                 <IoIosPeople />
                 Customers
                 </Link>
             </li>
             <li className=' py-1 px-4 rounded-lg'>
-                <Link to={"/admin/transaction"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname==='/admin/transaction'? 'text-red-500' : 'text-black'}`}>
+                <Link to={"/admin/transaction"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname.includes('/admin/transaction')? 'text-red-500' : 'text-black'}`}>
                 <AiFillFileText />
                 Transaction
                 </Link>

@@ -47,7 +47,7 @@ const arr: DataType[] = [
     name: "Puma Shoes Air Jordan Cook Nigga 2023",
     price: 690,
     stock: 3,
-    action: <Link to="/admin/product/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
+    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
   },
 
   {
@@ -62,7 +62,7 @@ const arr: DataType[] = [
     name: "Puma Shoes Air Jordan Cook Nigga 2023",
     price: 690,
     stock: 3,
-    action: <Link to="/admin/product/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
+    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
   },
 
   {
@@ -70,14 +70,14 @@ const arr: DataType[] = [
     name: "Macbook",
     price: 232223,
     stock: 213,
-    action: <Link to="/admin/product/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
+    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
   },
   {
     photo: <img src={img} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
     name: "Puma Shoes Air Jordan Cook Nigga 2023",
     price: 690,
     stock: 3,
-    action: <Link to="/admin/product/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
+    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
   },
 
   {
@@ -85,14 +85,14 @@ const arr: DataType[] = [
     name: "Macbook",
     price: 232223,
     stock: 213,
-    action: <Link to="/admin/product/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
+    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
   },
   {
     photo: <img src={img2} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
     name: "Macbook",
     price: 232223,
     stock: 213,
-    action: <Link to="/admin/product/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
+    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
   },
 ];
 const Products = () => {
@@ -112,7 +112,7 @@ const Products = () => {
     <main className=' overflow-y-auto w-full'>
       {Table()}
     </main>
-    <Link to='/admin/product/new' className=' fixed right-8 top-8 h-10 w-10 flex flex-row items-center justify-center gap-0 rounded-full bg-red-600 text-white hover:opacity-80'>
+    <Link to='/admin/products/new' className=' fixed right-8 top-8 h-10 w-10 flex flex-row items-center justify-center gap-0 rounded-full bg-red-600 text-white hover:opacity-80'>
     <FaPlus />
     </Link>
     </div>
