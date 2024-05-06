@@ -10,7 +10,7 @@ import {
     Title,
     Tooltip,
 } from 'chart.js';
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar, Doughnut, Pie } from 'react-chartjs-2';
 
 
 ChartJS.register(
@@ -35,8 +35,6 @@ interface BarChartProps{
     labels?: string[],
 }
 
-
-
 export const BarChart = ({horizontal=false,
                           data_1,
                           data_2,
@@ -46,8 +44,7 @@ export const BarChart = ({horizontal=false,
                           bg_color2,
                           labels = months
 }: BarChartProps)=>{
-
-    
+ 
     const options:ChartOptions<"bar"> = {
         responsive: true,
         indexAxis: horizontal? "y": "x",
@@ -97,9 +94,7 @@ export const BarChart = ({horizontal=false,
         ],
       };
       
-
-
-    return <Bar options={options} data={data} />;
+    return <Bar width={horizontal? "200%": ""} options={options} data={data} />;
 
 }
 
@@ -111,11 +106,6 @@ interface DoughnutChartsProps {
     cutout?: number | string,
     legends?: boolean,
     offset?: number[]
-   
-    
-   
-    
-
 }
 
 export const DoughnutChart = ({
@@ -152,4 +142,45 @@ export const DoughnutChart = ({
     };
 
     return <Doughnut data={doughnutData} options={doughnutOptions} />
+}
+
+interface PieChartProps {
+    
+    labels: string[],
+    data: number[],
+    backgroundColor: string[],
+    offset?: number[]
+}
+export const PieChart = ({
+    labels,
+    data,
+    backgroundColor,
+    offset
+}:PieChartProps) =>{
+    const pieData: ChartData<"pie", number[],string> ={
+        labels,
+        datasets: [
+            {
+                data,
+                backgroundColor,
+                borderWidth: 1,
+                offset,
+            }
+        ]
+    };
+    const pieOptions: ChartOptions<"pie"> = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false,
+                position: 'bottom',
+                labels: {
+                    padding: 40,
+                }
+            }
+        },
+        
+    };
+
+    return <Pie data={pieData} options={pieOptions} />
 }
