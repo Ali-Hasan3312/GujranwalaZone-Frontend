@@ -31,7 +31,7 @@ const NewProduct = () => {
               <input type="text" 
               required
               placeholder="Name"
-              
+              value={name}
               onChange={(e)=> setName(e.target.name)}
               className=" w-full p-2 rounded border border-opacity-25 outline-none" />
             </div>
