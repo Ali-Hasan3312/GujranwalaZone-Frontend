@@ -19,7 +19,7 @@ const BarCharts = () => {
     <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
         <AdminSideBar />
         <main className=" bg-white overflow-y-auto p-16">
-            <h1 className=" mb-20 ml-8">Bar Charts</h1>
+            <h1 className=" mb-12 ml-8 font-bold text-2xl">Bar Charts</h1>
             <section className=" w-[80%] my-16 mx-auto">
                 <BarChart data_1={[200, 444, 343, 556, 778, 455, 990]}
             data_2={[300, 144, 433, 655, 237, 755, 190]}
