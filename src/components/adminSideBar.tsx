@@ -3,10 +3,46 @@ import { Link, useLocation } from 'react-router-dom'
 import { AiFillFileText } from 'react-icons/ai'
 import { IoIosPeople } from 'react-icons/io'
 import { FaChartBar, FaChartLine, FaChartPie, FaGamepad, FaStopwatch } from 'react-icons/fa'
+import { HiMenuAlt4 } from 'react-icons/hi'
+import { useEffect, useState } from 'react'
 const AdminSideBar = () => {
     const location = useLocation()
+    
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [phoneActive, setPhoneActive] = useState<boolean>(
+    window.innerWidth < 1100
+  );
+
+  const resizeHandler = () => {
+    setPhoneActive(window.innerWidth < 1100);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resizeHandler);
+
+    return () => {
+      window.removeEventListener("resize", resizeHandler);
+    };
+  }, []);
   return (
-   <aside className='bg-white p-4 z-10 overflow-y-auto overflow-hidden'>
+    <>
+     {phoneActive && (
+        <button id="hamburger" onClick={() => setShowModal(true)} className=' grid place-items-center h-12 w-12 border-none outline-none cursor-pointer text-blue-500 bg-opacity-100 fixed top-4 left-4 text-3xl bg-white rounded-full z-[9]'>
+          <HiMenuAlt4 />
+        </button>
+      )}
+   <aside className='bg-white p-4 z-10 overflow-y-auto overflow-hidden'  style={
+          phoneActive
+            ? {
+                width: "20rem",
+                height: "100vh",
+                position: "fixed",
+                top: 0,
+                left: showModal ? "0" : "-20rem",
+                transition: "all 0.5s",
+              }
+            : {}
+        }>
     <h2>Logo.</h2>
     <div className='my-4 mx-4'>
         <h5 className=' tracking-wider font-light uppercase opacity-80 my-2 mx-0'>Dashboard</h5>
@@ -97,7 +133,13 @@ const AdminSideBar = () => {
         </ul>
        
     </div>
+    {phoneActive && (
+          <button id="close-sidebar" onClick={() => setShowModal(false)} className=' w-[80%] my-4 mx-auto block p-3 border-none outline-none cursor-pointer bg-red-500 text-white rounded-lg'>
+            Close
+          </button>
+        )}
    </aside>
+   </>
   )
 }
 

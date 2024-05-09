@@ -16,11 +16,11 @@ const months = [
   ];
 const LineCharts = () => {
     return (
-        <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+        <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
             <AdminSideBar />
-            <main className=" bg-white overflow-y-auto p-16">
-                <h1 className=" mb-12 ml-8 font-bold text-2xl">Line Charts</h1>
-                <section className=" w-[80%] my-16 mx-auto">
+            <main className=" bg-white overflow-y-auto p-16 sm:p-0">
+                <h1 className=" mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-centre">Line Charts</h1>
+                <section className=" w-[80%] my-16 mx-auto sm:my-0 sm:mx-auto">
           <LineChart
             data={[
               200, 444, 444, 556, 778, 455, 990, 1444, 256, 447, 1000, 1200,

@@ -12,7 +12,7 @@ const Toss = () => {
     }
   }
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
         <AdminSideBar />
         <main className=" bg-white p-16">
             <h1 className=" mb-12 ml-8 font-bold text-2xl">Toss</h1>

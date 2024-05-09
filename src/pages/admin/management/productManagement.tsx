@@ -36,10 +36,10 @@ const ProductManagement = () => {
     setPhoto(photoUpdate);
   };
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
       <AdminSideBar />
-      <main className="overflow-y-auto w-full flex flex-row justify-center p-16">
-        <section className="h-[100vh] p-8 mr-[-60px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded">
+      <main className="overflow-y-auto w-full flex flex-row justify-center p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
+        <section className="h-[100vh] p-8 mr-[-60px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
           <strong className=" font-light">ID - adlfkjslfjlkds</strong>
           <img src={photo} alt="Product" className=" h-full w-full object-cover" />
           <p className=" tracking-wide font-bold text-gray-500 uppercase text-center text-sm">{name}</p>

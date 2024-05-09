@@ -16,18 +16,18 @@ const months = [
 ];
 const BarCharts = () => {
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
         <AdminSideBar />
-        <main className=" bg-white overflow-y-auto p-16">
-            <h1 className=" mb-12 ml-8 font-bold text-2xl">Bar Charts</h1>
-            <section className=" w-[80%] my-16 mx-auto">
+        <main className=" bg-white overflow-y-auto p-16 sm:p-0">
+            <h1 className=" mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-center">Bar Charts</h1>
+            <section className=" w-[80%] my-16 mx-auto sm:my-32 sm:mx-auto">
                 <BarChart data_1={[200, 444, 343, 556, 778, 455, 990]}
             data_2={[300, 144, 433, 655, 237, 755, 190]}
             title_1="Products"
             title_2="Users"
             bg_color1={`hsl(260,50%,30%)`}
             bg_color2={`hsl(360,90%,90%)`}/>
-            <h2 className="uppercase my-8 text-center tracking-[2px] font-normal">top selling products & customers</h2>
+            <h2 className="uppercase my-8 text-center tracking-[2px] font-normal sm:text-sm sm:tracking-tight">top selling products & customers</h2>
             </section>
             <section className=" w-[80%] my-16 mx-auto">
             <BarChart
@@ -42,7 +42,7 @@ const BarCharts = () => {
             bg_color2=""
             labels={months}
           />
-          <h2 className="uppercase my-8 text-center tracking-[2px] font-normal">Orders throughout the year</h2>
+          <h2 className="uppercase my-8 text-center tracking-[2px] font-normal sm:text-sm sm:tracking-tight">Orders throughout the year</h2>
             </section>
 
         </main>

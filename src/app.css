@@ -96,12 +96,12 @@ tbody > button:last-child{
     background-image: url("./assets/images/tails.png");
     transform: rotateY(-180deg);
 }
-.coupon-form{
+/* .coupon-form{
     display: grid;
     grid-template-columns: 2fr;
     grid-template-rows: 1fr;
     gap: 2rem;
-}
+} */
 .coupon-form >input{
     border: 1px solid rgba(0, 0, 0, 0.359);
 }
@@ -112,3 +112,4 @@ tbody > button:last-child{
 .btngrid{
     grid-column: 1/3;
 }
+

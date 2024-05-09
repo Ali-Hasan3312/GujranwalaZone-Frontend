@@ -20,7 +20,7 @@ const NewProduct = () => {
     }
   }
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
       <AdminSideBar />
       <main className="overflow-y-auto w-full flex flex-row justify-center p-16">
         <article className=" h-[100vh] p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto ">

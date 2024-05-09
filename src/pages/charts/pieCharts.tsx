@@ -3,11 +3,11 @@ import { DoughnutChart, PieChart } from '../../components/charts'
 import {categories} from "./../../assets/Data.json"
 const PieCharts = () => {
     return (
-        <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100'>
+        <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
             <AdminSideBar />
-            <main className=" bg-white overflow-y-auto p-16">
-                <h1 className=" mb-12 ml-8 font-bold text-2xl">Pie & Dougnut Charts</h1>
-                <section  className=" w-[80%] my-16 mx-auto">
+            <main className=" bg-white overflow-y-auto p-16 sm:p-0">
+                <h1 className=" mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-centre">Pie & Dougnut Charts</h1>
+                <section  className=" w-[80%] my-16 mx-auto sm:my-0 sm:mx-auto">
                     <div className='max-w-72 m-auto mt-16 mb-[-1rem]'>
                         <PieChart labels={["Processing","Shipped","Delivered"]}
                         data={[12,9,13]}
