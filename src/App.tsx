@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { lazy, Suspense } from "react"
-import Loader from "./components/loader"
+import Header from "./components/header.tsx"
 
-// const Home   = lazy(()=> import("./pages/home")) 
-// const Search = lazy(()=> import("./pages/search"))   
-// const Cart   = lazy(()=> import("./pages/cart")) 
-// const Loader = lazy(()=>import("./components/loader.tsx"))
+
+const Home   = lazy(()=> import("./pages/home")) 
+const Search = lazy(()=> import("./pages/search"))   
+const Cart   = lazy(()=> import("./pages/cart")) 
+const Loader = lazy(()=>import("./components/loader.tsx"))
+//  Admin Imports
 const Dashboard   = lazy(()=> import("./pages/admin/dashboard")) 
 const Customers   = lazy(()=> import("./pages/admin/customers")) 
 const Products   = lazy(()=> import("./pages/admin/products.tsx")) 
@@ -25,11 +27,15 @@ function App() {
 
   return (
   <Router>
+    {/*  Header */}
+    <Header />
     <Suspense fallback={<Loader />}>
     <Routes>
-      {/* <Route path="/" element={<Home />} />
+
+      <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
-      <Route path="/cart" element={<Cart />} /> */}
+      <Route path="/cart" element={<Cart />} />
+      // Admin Routes
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/customers" element={<Customers />} />
       <Route path="/admin/products" element={<Products />} />

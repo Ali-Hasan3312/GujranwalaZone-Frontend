@@ -8,6 +8,7 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 a{
@@ -113,3 +114,14 @@ tbody > button:last-child{
     grid-column: 1/3;
 }
 
+.firstdialog{
+    position: absolute;
+    left: calc(100% - 100px);
+    top: 8%;
+}
+.home{
+    height: calc(100vh - 4rem);
+}
+.home > section{
+    background: url("./assets/cover.jpg") no-repeat center / cover;
+}
