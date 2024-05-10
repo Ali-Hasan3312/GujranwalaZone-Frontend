@@ -119,9 +119,10 @@ tbody > button:last-child{
     left: calc(100% - 100px);
     top: 8%;
 }
-.home{
-    height: calc(100vh - 4rem);
-}
+
 .home > section{
     background: url("./assets/cover.jpg") no-repeat center / cover;
+}
+.noScrollbar::-webkit-scrollbar{
+display: none;
 }
