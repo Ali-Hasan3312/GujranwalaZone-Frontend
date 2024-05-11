@@ -21,6 +21,7 @@ const PieChart   = lazy(()=> import("./pages/charts/pieCharts.tsx"))
 const Coupon   = lazy(()=> import("./pages/apps/coupon.tsx")) 
 const StopWatch   = lazy(()=> import("./pages/apps/stopWatch.tsx")) 
 const Toss   = lazy(()=> import("./pages/apps/toss.tsx")) 
+const Shipping   = lazy(()=> import("./pages/shipping.tsx")) 
 
 function App() {
  
@@ -35,6 +36,11 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
       <Route path="/cart" element={<Cart />} />
+      
+      // User Logged In Routes
+      <Route>
+      <Route path="/shipping" element={<Shipping />} />
+      </Route>
       // Admin Routes
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/customers" element={<Customers />} />

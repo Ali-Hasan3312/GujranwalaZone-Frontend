@@ -126,3 +126,10 @@ tbody > button:last-child{
 .noScrollbar::-webkit-scrollbar{
 display: none;
 }
+.Cart{
+    height: calc(100vh - 4rem);
+    align-items: stretch;
+}
+.Cart > main::-webkit-scrollbar{
+  display: none;
+}

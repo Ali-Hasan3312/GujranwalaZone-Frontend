@@ -11,7 +11,7 @@ const Header = () => {
     }
   return (
    <nav className='header flex  justify-end items-stretch gap-5 p-4'>
-    <Link onClick={()=> setIsOpen(false)} className=' text-gray-800 tracking-[2px] text-md hover:text-teal-500 mb-2' to={"/"} >Home</Link>
+    <Link onClick={()=> setIsOpen(false)} className=' text-gray-800 tracking-[2px] text-md hover:text-teal-500 mb-2 uppercase' to={"/"} >Home</Link>
     <Link onClick={()=> setIsOpen(false)} className=' text-gray-800 text-md hover:text-teal-500 mt-1' to={"/search"} ><FaSearch /></Link>
     <Link onClick={()=> setIsOpen(false)} className=' text-gray-800  text-lg hover:text-teal-500 mb-2' to={"/cart"} ><BiShoppingBag /></Link>
 
