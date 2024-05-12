@@ -29,7 +29,7 @@ function TableHOC<T extends Object>(
                canPreviousPage} = useTable(options,useSortBy,usePagination,);
         return (
             <div className='overflow-x-auto bg-white shadow-md rounded-lg w-full p-4 '>
-                <h2 className='  mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold '>{heading}</h2>
+                <h2 className='  mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold'>{heading}</h2>
                 <table {...getTableProps()} className='table'>
                     <thead>
                         {headerGroups.map((headerGroup)=>(

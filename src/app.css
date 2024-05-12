@@ -133,3 +133,9 @@ display: none;
 .Cart > main::-webkit-scrollbar{
   display: none;
 }
+.biarrowback{
+    transition: all 0.3s;
+}
+.biarrowback:hover{
+   translate: -0.25rem;
+}

@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
-import { FaSearch, FaSign, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaSearch, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const user = {_id: "asvfd",role:"admin"}
+const user = {_id: "ldfjal",role:""}
 const Header = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const logoutHandler = ()=>{
@@ -18,7 +18,7 @@ const Header = () => {
     {
         user?._id? ( 
             <>
-            <button onClick={()=> setIsOpen(false)} className=' border-none text-lg cursor-pointer bg-transparent hover:text-teal-500 mb-9'>
+            <button onClick={()=> setIsOpen(true)} className=' border-none text-lg cursor-pointer bg-transparent hover:text-teal-500 mb-9'>
                 <FaUser />
             </button>
             <dialog open={isOpen} className='firstdialog border border-solid border-gray-300 rounded p-3 w-[100px] '>
@@ -37,7 +37,7 @@ const Header = () => {
             </>
         ) : (
             <Link to={"/login"} >
-             <FaSign />
+             <FaSignInAlt />
             </Link>
            
 
