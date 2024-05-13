@@ -1,7 +1,7 @@
-import React, { ReactElement, useState } from 'react'
+import { ReactElement, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Column } from 'react-table';
 import TableHOC from '../components/tableHOC';
-import { Link } from 'react-router-dom';
 
 type DataType = {
     _id: string;
@@ -40,7 +40,7 @@ type DataType = {
   ];
   
 const Orders = () => {
-    const [rows, setRows] = useState<DataType[]>([
+    const [rows] = useState<DataType[]>([
         {
             _id: "jfsjlkdj",
             amount: 8734,
