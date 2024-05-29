@@ -1,13 +1,31 @@
 import { useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
 import { FaSearch, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { AppDispatch, RootState } from '../redux/store'
+import { logoutUser } from '../redux/features/auth/authThunks'
+import { toast } from 'react-toastify'
 
 const user = {_id: "ldfjal",role:""}
 const Header = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
+    const dispatch = useDispatch<AppDispatch>();
+  const authState = useSelector((state: RootState) => state.auth);
+ const navigate = useNavigate()
+
     const logoutHandler = ()=>{
-        setIsOpen(false)
+        if(authState.user)
+         {
+            setIsOpen(true)
+            dispatch(logoutUser())
+            toast.success("User Logged Out Successfully")
+            navigate("/user/login")
+        
+        }
+          else{
+            setIsOpen(false)
+          }
     }
   return (
    <nav className='header flex  justify-end items-stretch gap-5 p-4'>
@@ -29,8 +47,10 @@ const Header = () => {
                        )
                     }
                     <Link onClick={()=> setIsOpen(false)} className=' text-gray-800 tracking-[2px] text-lg hover:text-teal-500' to={"/orders"}>Orders</Link>
-                    <button onClick={logoutHandler}  className=' border-none text-lg cursor-pointer bg-transparent hover:text-teal-500'>
-                        <FaSignOutAlt />
+                    <button  className=' border-none text-lg cursor-pointer bg-transparent hover:text-teal-500'>
+                        <Link to={"/login"}>
+                        <FaSignOutAlt onClick={logoutHandler} />
+                        </Link>
                     </button>
                 </div>
             </dialog>

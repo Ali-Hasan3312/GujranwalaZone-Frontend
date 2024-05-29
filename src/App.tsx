@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import Header from "./components/header.tsx"
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // User Logged In Imports
 const Home   = lazy(()=> import("./pages/home")) 
@@ -8,6 +10,9 @@ const Search = lazy(()=> import("./pages/search"))
 const Cart   = lazy(()=> import("./pages/cart")) 
 const Shipping   = lazy(()=> import("./pages/shipping.tsx")) 
 const Login =  lazy(()=> import("./pages/login.tsx"))
+const Register =  lazy(()=> import("./pages/register.tsx"))
+const ForgotPassword =  lazy(()=> import("./pages/forgotPassword.tsx"))
+const ResetPassword =  lazy(()=> import("./pages/resetPassword.tsx"))
 const Orders =  lazy(()=> import("./pages/orders.tsx"))
 // Loader
 const Loader = lazy(()=>import("./components/loader.tsx"))
@@ -41,6 +46,9 @@ function App() {
       <Route path="/search" element={<Search />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/password-reset/:token" element={<ResetPassword />} />
       <Route>
       <Route path="/shipping" element={<Shipping />} />
       </Route>
@@ -68,6 +76,7 @@ function App() {
 
     </Routes>
     </Suspense>
+    <ToastContainer />
   </Router>
   )
 }
