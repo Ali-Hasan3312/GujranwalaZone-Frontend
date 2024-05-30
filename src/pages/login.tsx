@@ -18,13 +18,15 @@ const Login = () => {
  const navigate = useNavigate()
   useEffect(() => {
     if (authState.user) {
-      toast.success("User logged in successfully");
+      toast.success(authState.user.message);
+      
+      
       navigate("/")
     }
     if (authState.error) {
-      toast.error("Sign In Failed");
+      toast.error("Invalid User Credentials");
     }
-  }, [authState]);
+  }, [authState.user,authState.error]);
 
   const handleLogin = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();

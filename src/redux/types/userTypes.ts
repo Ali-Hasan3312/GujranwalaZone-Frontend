@@ -1,8 +1,17 @@
 // src/types/userTypes.ts
+export interface loggedInUser{
+  _id: string;
+  name:string;
+  email:string;
+  role:string;
+  token:string;
+  gender: "Male" | "Female";
+  photo:string;
+}
 export interface User {
-    id: string;
-    name: string;
-    email: string;
+    success: boolean;
+    message: string;
+    user: loggedInUser;
   }
   
   export interface AuthState {

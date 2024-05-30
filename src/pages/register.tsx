@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '../redux/store'; // Ensure you have this
 import { toast } from "react-toastify";
 
 const Register: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const authState = useSelector((state: RootState) => state.auth);
   const img = "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg";
@@ -71,19 +71,19 @@ const Register: React.FC = () => {
       photo,
       password,
     };
+
     dispatch(registerUser(formData));
   };
 
-  useEffect(()=>{
-    if(authState.user){
-      toast.success("User Registered Successfully")
-      navigate("/login")
+  useEffect(() => {
+    if (authState.user) {
+      toast.success("User Registered Successfully");
+      navigate("/");
     }
-    if(authState.error){
-      toast.error("Registeration Failed")
+    if (authState.error) {
+      toast.error(authState.error);
     }
-
-  },[handleSubmit])
+  }, [authState.user, authState.error]);
 
   return (
     <div className="login h-[100vh] flex flex-col items-center">
