@@ -1,16 +1,21 @@
-import { ReactElement, useCallback, useState } from 'react'
-import AdminSideBar from '../../components/adminSideBar'
-import TableHOC from '../../components/tableHOC'
-import { Column } from 'react-table'
-import { Link } from 'react-router-dom'
-import { FaPlus } from 'react-icons/fa'
+import { ReactElement, useEffect, useMemo, useState } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Column } from 'react-table';
+import { toast } from 'react-toastify';
+import AdminSideBar from '../../components/adminSideBar';
+import TableHOC from '../../components/tableHOC';
+import { useAllProductsQuery } from '../../redux/api/productAPI';
+import { RootState } from '../../redux/store';
+import { CustomError } from '../../redux/types/api-types';
 
-interface DataType{
-photo: ReactElement,
-price: number,
-stock: number,
-name: string,
-action: ReactElement
+interface DataType {
+  photo: ReactElement,
+  price: number,
+  stock: number,
+  name: string,
+  action: ReactElement
 }
 
 const columns: Column<DataType>[] = [
@@ -34,89 +39,56 @@ const columns: Column<DataType>[] = [
     Header: 'Action',
     accessor: "action"
   },
-]
-
-const img =
-  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=804";
-
-const img2 = "https://m.media-amazon.com/images/I/514T0SvwkHL._SL1500_.jpg";
-
-const arr: DataType[] = [
-  {
-    photo: <img src={img} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Puma Shoes Air Jordan Cook Nigga 2023",
-    price: 690,
-    stock: 3,
-    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2'>Manage</Link>,
-  },
-
-  {
-    photo: <img src={img2} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Macbook",
-    price: 232223,
-    stock: 213,
-    action: <Link to="/admin/product/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
-  {
-    photo: <img src={img} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Puma Shoes Air Jordan Cook Nigga 2023",
-    price: 690,
-    stock: 3,
-    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
-
-  {
-    photo: <img src={img2} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Macbook",
-    price: 232223,
-    stock: 213,
-    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
-  {
-    photo: <img src={img} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Puma Shoes Air Jordan Cook Nigga 2023",
-    price: 690,
-    stock: 3,
-    action: <Link to="/admin/products/sajknaskd" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
-
-  {
-    photo: <img src={img2} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Macbook",
-    price: 232223,
-    stock: 213,
-    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
-  {
-    photo: <img src={img2} alt="Shoes" className=' h-16 w-16 object-contain rounded-lg' />,
-    name: "Macbook",
-    price: 232223,
-    stock: 213,
-    action: <Link to="/admin/products/sdaskdnkasjdn" className=' no-underline bg-blue-600 bg-opacity-45 text-blue-600 hover:opacity-80 rounded-lg py-1 px-2' >Manage</Link>,
-  },
 ];
+
 const Products = () => {
-  const [data] = useState<DataType[]>(arr)
-  const Table = useCallback(
-    TableHOC<DataType>(
-      columns,
-      data,
-      "Products",
-      true
-    ),[]
-  )
+  const user = useSelector((state: RootState) => state.auth.user?.user);
+ 
+
+  // Check if userId is null before calling the query
+  const { isError, error, data } = useAllProductsQuery(user?._id!);
+  const [rows, setRows] = useState<DataType[]>([]);
+
+  if (isError) {
+    const err = error as CustomError;
+    console.log(err.data.message);
+    toast.error(err.data.message);
+  }
+
+  useEffect(() => {
+    if (data) {
+      console.log(data.products);
+      setRows(
+        
+        data.products.map((i) => ({
+          photo: <img src={`${i.photo}`} alt={`${i.name} photo`} />,
+          name: i.name,
+          price: i.price,
+          stock: i.stock,
+          action: <Link to={`/admin/product/${i._id}`}>Manage</Link>,
+        }))
+      );
+    }
+  }, [data]);
+
+  const Table = useMemo(() => TableHOC<DataType>(
+    columns,
+    rows,
+    "Products",
+    rows.length > 6
+  ), [columns, rows]);
+
   return (
     <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
-    <AdminSideBar />
-    
-    <main className=' overflow-y-auto w-full'>
-      {Table()}
-    </main>
-    <Link to='/admin/products/new' className=' fixed right-8 top-8 h-10 w-10 flex flex-row items-center justify-center gap-0 rounded-full bg-red-600 text-white hover:opacity-80'>
-    <FaPlus />
-    </Link>
+      <AdminSideBar />
+      <main className='overflow-y-auto w-full'>
+        {Table()}
+      </main>
+      <Link to='/admin/products/new' className='fixed right-8 top-8 h-10 w-10 flex flex-row items-center justify-center gap-0 rounded-full bg-red-600 text-white hover:opacity-80'>
+        <FaPlus />
+      </Link>
     </div>
-  )
+  );
 }
 
-export default Products
+export default Products;

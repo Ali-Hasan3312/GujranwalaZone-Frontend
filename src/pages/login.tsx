@@ -17,12 +17,11 @@ const Login = () => {
   const authState = useSelector((state: RootState) => state.auth);
  const navigate = useNavigate()
   useEffect(() => {
-    if (authState.user) {
-      toast.success(authState.user.message);
-      
-      
+    if (authState.user?.user) {
+      toast.success(`Welcome back ${authState.user.user.name}`);
       navigate("/")
     }
+    
     if (authState.error) {
       toast.error("Invalid User Credentials");
     }

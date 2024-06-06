@@ -4,7 +4,6 @@ import axios from 'axios';
 import { ChangePasswordData, ForgotPasswordData, LoginData, RegisterData, ResetPasswordData, User } from '../../types/userTypes';
 import api from '../../utils/api';
 
-
 export const loginUser = createAsyncThunk('auth/loginUser', async (loginData: LoginData, { rejectWithValue }) => {
   try {
     const response = await api.post<User>(`/user/login`, loginData); 

@@ -3,6 +3,9 @@ import { lazy, Suspense } from "react"
 import Header from "./components/header.tsx"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store.ts";
+import ProtectedRoute from "./components/protectedRoute.tsx";
 
 // User Logged In Imports
 const Home   = lazy(()=> import("./pages/home")) 
@@ -33,15 +36,17 @@ const Toss   = lazy(()=> import("./pages/apps/toss.tsx"))
 const OrderDetails = lazy(()=> import("./pages/orderDetails.tsx")) 
 
 function App() {
+  const {user,loading} = useSelector((state:RootState)=>state.auth)
  
 
-  return (
+  return loading? (<Loader />) : (
   <Router>
     {/*  Header */}
     <Header />
     <Suspense fallback={<Loader />}>
     <Routes>
-    // User Logged In Routes
+
+      // Not Logged In Routes
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
       <Route path="/cart" element={<Cart />} />
@@ -49,13 +54,28 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/password-reset/:token" element={<ResetPassword />} />
+    // User Logged In Routes
+    <Route
+            element={<ProtectedRoute isAuthenticated={user?.user? true : false} />}
+          >
+      
       <Route>
       <Route path="/shipping" element={<Shipping />} />
       </Route>
       <Route path="/orders" element ={<Orders />} />
       <Route path="/orders/orderDetails" element ={<OrderDetails />} />
-
+      </Route>
       // Admin Routes
+      <Route
+            element={
+              <ProtectedRoute
+                isAuthenticated={true}
+                adminOnly={true}
+                admin={user?.user.role === "admin" ? true : false}
+              />
+            }
+          >
+
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/customers" element={<Customers />} />
       <Route path="/admin/products" element={<Products />} />
@@ -73,7 +93,7 @@ function App() {
       <Route path="/admin/products/new" element={<NewProduct />} />
       <Route path="/admin/products/:id" element={<ProductManagement />} />
       <Route path="/admin/transaction/:id" element={<TransactionManagement />} />
-
+      </Route>
     </Routes>
     </Suspense>
     <ToastContainer />

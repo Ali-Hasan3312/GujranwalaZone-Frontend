@@ -1,43 +1,38 @@
+import { useId } from 'react';
 import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
-import { Column, TableOptions, useTable,useSortBy,usePagination } from 'react-table';
+import { Column, TableOptions, useTable, useSortBy, usePagination } from 'react-table';
+
 function TableHOC<T extends Object>(
     columns: Column<T>[],
     data: T[],
     heading: string,
     showPagination: boolean = false
-){
-    return function HOC(){
+) {
+    return function HOC() {
+        const uniqueId = useId()
         const options: TableOptions<T> = {
+
             columns,
             data,
-            initialState:{
-                pageSize : 4
+            initialState: {
+                pageSize: 4
             },
-            
-           
         }
-        const {getTableProps,
-             getTableBodyProps,
-              headerGroups,
-              page,
-               prepareRow,
-               nextPage,
-               pageCount,
-               state:{pageIndex},
-               previousPage,
-               canNextPage,
-               canPreviousPage} = useTable(options,useSortBy,usePagination,);
+
+        const { getTableProps, getTableBodyProps, headerGroups, page, prepareRow, nextPage, pageCount, state: { pageIndex }, previousPage, canNextPage, canPreviousPage } = useTable(options, useSortBy, usePagination);
+
         return (
             <div className='overflow-x-auto bg-white shadow-md rounded-lg w-full p-4 '>
                 <h2 className='  mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold'>{heading}</h2>
-                <table {...getTableProps()} className='table'>
+                <table role="table" {...getTableProps()} className='table'>
                     <thead>
-                        {headerGroups.map((headerGroup)=>(
-                            <tr {...headerGroup.getHeaderGroupProps()}>
-                                {headerGroup.headers.map((column)=>(
-                                    <th {...column.getHeaderProps(column.getSortByToggleProps())} className=' p-2 text-left font-bold text-base  pb-8 px-4' >
+                        {headerGroups.map((headerGroup) => (
+                            <tr {...headerGroup.getHeaderGroupProps()} key={uniqueId}>
+                                {headerGroup.headers.map((column) => (
+                                    <th {...column.getHeaderProps(column.getSortByToggleProps())} key={column.id} className=' p-2 text-left font-bold text-base  pb-8 px-4'>
                                         {column.render("Header")}
-                                        {column.isSorted &&( <span>  {column.isSortedDesc? (<AiOutlineSortDescending/>) : (<AiOutlineSortAscending/>)} </span>
+                                        {column.isSorted && (
+                                            <span>{column.isSortedDesc ? (<AiOutlineSortDescending />) : (<AiOutlineSortAscending />)}</span>
                                         )}
                                     </th>
                                 ))}
@@ -45,14 +40,14 @@ function TableHOC<T extends Object>(
                         ))}
                     </thead>
                     <tbody {...getTableBodyProps()}>
-                        {page.map((row) => {
+                        {page.map((row, rowIndex) => {
                             prepareRow(row);
-                            return(
-                                <tr {...row.getRowProps()}>
-                                    {row.cells.map((cell)=>(
-                                        <td {...cell.getCellProps()} className=' p-2 text-left'>
+                            return (
+                                <tr {...row.getRowProps()} key={rowIndex}>
+                                    {row.cells.map((cell, cellIndex) => (
+                                        <td {...cell.getCellProps()} key={cellIndex} className=' p-2 text-left'>
                                             {cell.render("Cell")}
-                                            </td>
+                                        </td>
                                     ))}
                                 </tr>
                             )
@@ -71,4 +66,5 @@ function TableHOC<T extends Object>(
     }
 }
 
-export default TableHOC
+
+export default TableHOC;
