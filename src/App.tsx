@@ -56,8 +56,7 @@ function App() {
       <Route path="/password-reset/:token" element={<ResetPassword />} />
     // User Logged In Routes
     <Route
-            element={<ProtectedRoute isAuthenticated={user?.user? true : false} />}
-          >
+            element={<ProtectedRoute isAuthenticated={user?.user? true : false} />} >
       
       <Route>
       <Route path="/shipping" element={<Shipping />} />
