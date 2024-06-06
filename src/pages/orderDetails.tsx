@@ -1,7 +1,7 @@
 // This is Assignment 
 const OrderDetails = () => {
   return (
-    <div>OrderDetails</div>
+    <div></div>
   )
 }
 
