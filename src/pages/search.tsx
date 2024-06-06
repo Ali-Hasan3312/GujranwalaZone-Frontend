@@ -2,7 +2,6 @@ import { useState } from "react"
 import ProductCard from "../components/productCard"
 const img = "https://m.media-amazon.com/images/I/71DL+S6ihBL._AC_SL1500_.jpg"
 const addToCardHandler = ()=>{
-
 }
 const Search = () => {
   const [search, setSearch] = useState("")

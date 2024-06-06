@@ -11,7 +11,6 @@ type DataType = {
     status: ReactElement;
     action: ReactElement;
   };
-  
   const column: Column<DataType>[] = [
     {
       Header: "ID",
