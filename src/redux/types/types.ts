@@ -7,10 +7,6 @@ export type User = {
   dob: string;
   _id: string;
 };
-export interface loginUser{
-email:string;
-password:string;
-}
 
 export type Product = {
   name: string;

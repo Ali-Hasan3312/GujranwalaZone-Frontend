@@ -7,10 +7,8 @@ import {
   Product,
   ShippingInfo,
   Stats,
-  
+  User,
 } from "./types";
-import { User } from "./userTypes";
-
 
 export type CustomError = {
   status: number;
@@ -110,7 +108,7 @@ export type NewOrderRequest = {
   shippingCharges: number;
   discount: number;
   total: number;
-  user: string;
+  user: {_id:string,name:string};
 };
 
 export type UpdateOrderRequest = {

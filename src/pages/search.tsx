@@ -1,16 +1,54 @@
 import { useState } from "react"
 import ProductCard from "../components/productCard"
-const img = "https://m.media-amazon.com/images/I/71DL+S6ihBL._AC_SL1500_.jpg"
-const addToCardHandler = ()=>{
-}
+import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
+import { useDispatch } from "react-redux"
+import { CartItem } from "../redux/types/types"
+import { toast } from "react-toastify"
+import { addToCart } from "../redux/reducer/cartReducer"
+import { CustomError } from "../redux/types/api-types"
+import { server } from "../redux/store"
+
 const Search = () => {
+  const {
+    data: categoriesResponse,
+    isLoading: loadingCategories,
+    isError,
+    error,
+  } = useCategoriesQuery("");
   const [search, setSearch] = useState("")
   const [sort, setSort] = useState("")
   const [maxPrice, setMaxPrice] = useState(100000)
-  const [catagory, setCategory] = useState("")
+  const [category, setCategory] = useState("")
   const [page, setPage] = useState(1)
+  const {
+    data: searchedData,
+    isError: productIsError,
+    error: productError,
+  } = useSearchProductsQuery({
+    search,
+    sort,
+    category,
+    page,
+    price: maxPrice,
+  });
+  const dispatch = useDispatch();
+  const addToCartHandler = (cartItem: CartItem) => {
+    if (cartItem.stock < 1) return toast.error("Out of Stock");
+    dispatch(addToCart(cartItem));
+    toast.success("Added to cart");
+  };
+
  const  isPrevPage = page > 1
  const  isNextPage = page < 4
+
+ if (isError) {
+  const err = error as CustomError;
+  toast.error(err.data.message);
+}
+if (productIsError) {
+  const err = productError as CustomError;
+  toast.error(err.data.message);
+}
   return (
     <div className="search p-8 flex justify-start items-stretch gap-8 min-h-[93.5vh]">
       <aside className=" min-w-60 shadow-[2px_5px_10px_rgba(0,0,0,0.247)] p-8 flex flex-col justify-start items-stretch gap-4">
@@ -35,10 +73,15 @@ const Search = () => {
         </div>
         <div>
           <h4 className="font-semibold">Category</h4>
-          <select value={catagory} onChange={(e)=>setCategory(e.target.value)} className=" p-2 border border-solid border-gray-700 border-opacity-50 rounded font-sans outline-none bg-inherit w-full">
+          <select value={category} onChange={(e)=>setCategory(e.target.value)} className=" p-2 border border-solid border-gray-700 border-opacity-50 rounded font-sans outline-none bg-inherit w-full">
             <option value="">All</option>
-            <option value="asc">Sample1</option>
-            <option value="dsc">Sample2</option>
+            {!loadingCategories &&
+              categoriesResponse?.categories.map((i) => (
+                <option key={i} value={i}>
+                  {i.toUpperCase()} 
+                  </option>
+                ))}
+            
           </select>
         </div>
       </aside>
@@ -50,23 +93,18 @@ const Search = () => {
         onChange={(e)=> setSearch(e.target.value)}
         className=" p-4 outline-none bg-inherit w-full rounded m-4 text-lg block"
         />
-        <div className=" flex justify-start items-start flex-wrap overflow-y-auto h-[70%]">
-        <ProductCard 
-        productId="84739478"
-        name="Laptop"
-        price={44874}
-        stock={30}
-        handler={addToCardHandler}
-        photo={img}
-        />
-        <ProductCard 
-        productId="84739478"
-        name="Laptop"
-        price={44874}
-        stock={30}
-        handler={addToCardHandler}
-        photo={img}
-        />
+        <div className=" flex justify-start items-start flex-wrap overflow-y-auto no-scrollbar h-[70%]">
+        {searchedData?.products.map((i) => (
+              <ProductCard 
+                key={i._id}
+                productId={i._id}
+                name={i.name}
+                price={i.price}
+                stock={i.stock}
+                handler={addToCartHandler}
+                photo={`${server}/${i.photo}`}
+              />
+            ))}
         </div>
         <article className="flex justify-center items-center gap-4">
           <button 
@@ -74,7 +112,7 @@ const Search = () => {
           onClick={()=>setPage((prev)=> prev-1)}
           className="flex justify-center items-center gap-4 py-1 px-3 bg-teal-800 text-white rounded-[10px] disabled:cursor-not-allowed disabled:opacity-50 "
           >Prev</button>
-          <span>{page} of {4}</span>
+          <span>{page} of {searchedData?.totalPage}</span>
           <button 
           disabled={!isNextPage}
           onClick={()=>setPage((prev)=> prev+1)}

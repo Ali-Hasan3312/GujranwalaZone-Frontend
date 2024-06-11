@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import AdminSideBar from '../../components/adminSideBar';
 import TableHOC from '../../components/tableHOC';
 import { useAllProductsQuery } from '../../redux/api/productAPI';
-import { RootState } from '../../redux/store';
+import { RootState, server } from '../../redux/store';
 import { CustomError } from '../../redux/types/api-types';
 
 interface DataType {
@@ -42,7 +42,7 @@ const columns: Column<DataType>[] = [
 ];
 
 const Products = () => {
-  const user = useSelector((state: RootState) => state.auth.user?.user);
+  const user = useSelector((state: RootState) => state.userReducer.user);
  
 
   // Check if userId is null before calling the query
@@ -57,15 +57,13 @@ const Products = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.products);
       setRows(
-        
         data.products.map((i) => ({
-          photo: <img src={`${i.photo}`} alt={`${i.name} photo`} />,
+          photo: <img src={`${server}/${i.photo}`} alt={`${i.name} photo`} className=' h-16 w-16' />,
           name: i.name,
           price: i.price,
           stock: i.stock,
-          action: <Link to={`/admin/product/${i._id}`}>Manage</Link>,
+          action: <Link to={`/admin/product/${i._id}`} className=' bg-blue-300 hover:bg-inherit hover:text-black hover:transition-all p-1 rounded-lg text-blue-700'>Manage</Link>,
         }))
       );
     }

@@ -4,7 +4,7 @@ import { MessageResponse } from "../types/api-types";
 import { NavigateFunction } from "react-router-dom";
 import { toast } from "react-toastify";
 
-type ResType =
+export type ResType =
   | {
       data: MessageResponse;
     }

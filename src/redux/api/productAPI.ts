@@ -26,6 +26,8 @@ export const productAPI = createApi({
       query: (id) => `admin-products?id=${id}`,
       providesTags: ["product"],
     }),
+   
+    
     categories: builder.query<CategoriesResponse, string>({
       query: () => `categories`,
       providesTags: ["product"],
@@ -37,16 +39,13 @@ export const productAPI = createApi({
     >({
       query: ({ price, search, sort, category, page }) => {
         let base = `all?search=${search}&page=${page}`;
-
         if (price) base += `&price=${price}`;
         if (sort) base += `&sort=${sort}`;
         if (category) base += `&category=${category}`;
-
-        return base;
+        return {url: base , method: 'POST'};
       },
       providesTags: ["product"],
     }),
-
     productDetails: builder.query<ProductResponse, string>({
       query: (id) => id,
       providesTags: ["product"],
@@ -79,6 +78,8 @@ export const productAPI = createApi({
     }),
   }),
 });
+
+
 
 export const {
   useLatestProductsQuery,

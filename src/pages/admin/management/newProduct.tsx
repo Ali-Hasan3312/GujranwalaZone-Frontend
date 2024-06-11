@@ -11,14 +11,13 @@ const NewProduct = () => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
   const [stock, setStock] = useState<number>(0);
-  const [photo, setPhoto] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-
-  // Properly destructure the mutation hook
+  const [photoPrev, setPhotoPrev] = useState<string>("");
+  const [photo, setPhoto] = useState<File>();
   const [newProductMutation, { isLoading }] = useNewProductMutation();
   const navigate = useNavigate();
 
-  const user = useSelector((state: RootState) => state.auth.user?.user);
+  const user = useSelector((state: RootState) => state.userReducer.user);
 
   const changeImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file: File | undefined = e.target.files?.[0];
@@ -27,7 +26,8 @@ const NewProduct = () => {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
-          setPhoto(reader.result);
+          setPhotoPrev(reader.result);
+          setPhoto(file);
         }
       };
     }
@@ -35,14 +35,14 @@ const NewProduct = () => {
 
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name || !price || stock < 0 || !category || !photo) return;
+    if (!name || !price || stock < 0 || !category) return;
 
     const formData = new FormData();
 
     formData.set("name", name);
     formData.set("price", price.toString());
     formData.set("stock", stock.toString());
-    formData.set("photo", photo);
+   if(photo) formData.set("photo", photo);
     formData.set("category", category);
 
     try {
@@ -111,7 +111,7 @@ const NewProduct = () => {
                 className="w-full p-2 rounded border border-opacity-25 outline-none"
               />
             </div>
-            {photo && <img src={photo} alt="New Image" className="h-20 w-20 object-cover rounded" />}
+            {photoPrev && <img src={photoPrev} alt="New Image" className="h-20 w-20 object-cover rounded" />}
             <button type="submit" className="p-2 border-none bg-blue-700 text-white w-full rounded cursor-pointer hover:opacity-80">
               Create
             </button>

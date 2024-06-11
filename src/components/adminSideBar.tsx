@@ -56,7 +56,7 @@ const AdminSideBar = () => {
 
             </li>
             <li className=' py-1 px-4 rounded-lg'>
-                <Link to={"/admin/products"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname.includes('/admin/products')? 'text-red-500' : 'text-black'} `}>
+                <Link to={"/admin/products"} className={`flex content-center items-center gap-4 text-black text-opacity-85 ${location.pathname.includes('/admin/product')? 'text-red-500' : 'text-black'} `}>
                 <RiShoppingBag3Fill />
                 Products
                 </Link>

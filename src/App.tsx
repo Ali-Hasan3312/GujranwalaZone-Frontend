@@ -1,11 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import Header from "./components/header.tsx"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store.ts";
 import ProtectedRoute from "./components/protectedRoute.tsx";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase.ts";
+import { getUser } from "./redux/api/userAPI.ts";
+import { userExist, userNotExist } from "./redux/reducer/userReducer.ts";
 
 // User Logged In Imports
 const Home   = lazy(()=> import("./pages/home")) 
@@ -13,10 +17,9 @@ const Search = lazy(()=> import("./pages/search"))
 const Cart   = lazy(()=> import("./pages/cart")) 
 const Shipping   = lazy(()=> import("./pages/shipping.tsx")) 
 const Login =  lazy(()=> import("./pages/login.tsx"))
-const Register =  lazy(()=> import("./pages/register.tsx"))
-const ForgotPassword =  lazy(()=> import("./pages/forgotPassword.tsx"))
-const ResetPassword =  lazy(()=> import("./pages/resetPassword.tsx"))
+
 const Orders =  lazy(()=> import("./pages/orders.tsx"))
+const NotFound = lazy(() => import("./pages/not-found"));
 // Loader
 const Loader = lazy(()=>import("./components/loader.tsx"))
 //  Admin Imports
@@ -34,15 +37,23 @@ const Coupon   = lazy(()=> import("./pages/apps/coupon.tsx"))
 const StopWatch   = lazy(()=> import("./pages/apps/stopWatch.tsx")) 
 const Toss   = lazy(()=> import("./pages/apps/toss.tsx")) 
 const OrderDetails = lazy(()=> import("./pages/orderDetails.tsx")) 
-
 function App() {
-  const {user,loading} = useSelector((state:RootState)=>state.auth)
+  const {user} = useSelector((state:RootState)=>state.userReducer)
+  const dispatch = useDispatch();
  
-
-  return loading? (<Loader />) : (
+  
+  useEffect(() => {
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const data = await getUser(user.uid);
+        dispatch(userExist(data.user));
+      } else dispatch(userNotExist());
+    });
+  }, []);
+  return (
   <Router>
     {/*  Header */}
-    <Header />
+    <Header user={user} />
     <Suspense fallback={<Loader />}>
     <Routes>
 
@@ -50,31 +61,18 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/search" element={<Search />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/password-reset/:token" element={<ResetPassword />} />
-    // User Logged In Routes
-    <Route
-            element={<ProtectedRoute isAuthenticated={user?.user? true : false} />} >
-      
-      <Route>
       <Route path="/shipping" element={<Shipping />} />
-      </Route>
+      <Route path="/login" element={<Login />} />
+    // User Logged In Routes
+   
       <Route path="/orders" element ={<Orders />} />
-      <Route path="/orders/orderDetails" element ={<OrderDetails />} />
-      </Route>
+      <Route path="/orders/orderDetails/:id" element ={<OrderDetails />} />
+     
       // Admin Routes
-      <Route
-            element={
-              <ProtectedRoute
-                isAuthenticated={true}
-                adminOnly={true}
-                admin={user?.user.role === "admin" ? true : false}
-              />
-            }
-          >
-
+    
+      <Route 
+      element={<ProtectedRoute isAuthenticated={true} admin={user?.role==="admin"? true : false} adminOnly={true} />}
+      >
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/customers" element={<Customers />} />
       <Route path="/admin/products" element={<Products />} />
@@ -90,9 +88,10 @@ function App() {
       <Route path="/admin/apps/toss" element={<Toss />} />
       {/* Management */}
       <Route path="/admin/products/new" element={<NewProduct />} />
-      <Route path="/admin/products/:id" element={<ProductManagement />} />
+      <Route path="/admin/product/:id" element={<ProductManagement />} />
       <Route path="/admin/transaction/:id" element={<TransactionManagement />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
     </Suspense>
     <ToastContainer />

@@ -2,40 +2,61 @@ import { useEffect, useState } from "react";
 import { VscError } from "react-icons/vsc";
 import CartItem from "../components/cartItem";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, server } from "../redux/store";
+import { addToCart, calculatePrice, discountApplied, removeCartItem } from "../redux/reducer/cartReducer";
+import axios from "axios";
 
-const cartItems = [
-  {
-    productId: "adjlfs",
-    photo: "https://m.media-amazon.com/images/I/71DL+S6ihBL._AC_SL1500_.jpg",
-    name: "MackBook",
-    price: 34000,
-    quantity: 3,
-    stock: 12
-  }
-];
-const subTotal = 4000;
-const tax = Math.round(subTotal * 0.18)
-const shippingCharges = 200;
-const discount = 400
-const total = subTotal + tax + shippingCharges;
 const Cart = () => {
+  const {cartItems, subtotal, tax, total, shippingCharges, discount} = useSelector((state: RootState)=>state.cartReducer)
+  const dispatch = useDispatch()
   const [couponCode,setCouponCode] = useState<string>("")
   const [isValidCouponCode,setIsValidCouponCode] = useState<boolean>(false)
-  useEffect(()=>{
-    const timeOutId = setTimeout(()=>{
-       if(Math.random() > 0.5)
-        setIsValidCouponCode(true);
-       
-       else
-        setIsValidCouponCode(false);
+  const incrementHandler = (cartItem: CartItem) => {
+    if (cartItem.quantity >= cartItem.stock) return;
+    
+    
+    dispatch(addToCart({ ...cartItem, quantity: cartItem.quantity + 1 }));
+  };
+  const decrementHandler = (cartItem: CartItem) => {
+    if (cartItem.quantity <= 1) return;
 
+    dispatch(addToCart({ ...cartItem, quantity: cartItem.quantity - 1 }));
+  };
+  const removeHandler = (productId: string) => {
+    dispatch(removeCartItem(productId));
+  };
+  useEffect(()=>{
+    const { token: cancelToken, cancel } = axios.CancelToken.source();
+    const timeOutId = setTimeout(()=>{
+      axios
+        .get(`${server}/api/v1/payment/discount?coupon=${couponCode}`, {
+          cancelToken,
+        }
+
+        ).then((res) => {
+          dispatch(discountApplied(res.data.discount));
+          setIsValidCouponCode(true);
+          dispatch(calculatePrice());
+        })
+        .catch(() => {
+          dispatch(discountApplied(0));
+          setIsValidCouponCode(false);
+          dispatch(calculatePrice());
+        });
+      
       
     },1000)
     return ()=>{
       clearTimeout(timeOutId)
+      cancel();
       setIsValidCouponCode(false)
      }
   },[couponCode])
+
+  useEffect(() => {
+    dispatch(calculatePrice());
+  }, [cartItems]);
   
   return (
     <div className="Cart py-8 px-16 flex justify-between gap-12">
@@ -43,7 +64,11 @@ const Cart = () => {
         {
           cartItems.length > 0 ? (
             cartItems.map((i,idx)=>(
-              <CartItem key={idx} cartItem={i} />
+              <CartItem key={idx}
+              incrementHandler={incrementHandler}
+              decrementHandler={decrementHandler}
+              removeHandler={removeHandler}
+              cartItem={i} />
             ))
           ): (
                <h1>No Items Added To Cart</h1>
@@ -51,7 +76,7 @@ const Cart = () => {
         }
       </main>
       <aside className=" w-[30%] p-12 flex flex-col justify-center items-stretch gap-6 mt-10">
-        <p>Subtotal: Rs{subTotal}</p>
+        <p>Subtotal: Rs{subtotal}</p>
         <p>Shipping Charges: Rs{shippingCharges}</p>
         <p>Tax: Rs{tax}</p>
         <p>Discount: <em className=" text-red-500"> - Rs{discount}</em> </p>
@@ -72,7 +97,8 @@ const Cart = () => {
           )
         )
         }
-        <Link className=" bg-teal-500 p-4 text-white flex justify-center items-center gap-4 uppercase tracking-[2px] rounded hover:opacity-80" to={"/shipping"}>Checkout</Link>
+        {cartItems.length > 0 && 
+        <Link className=" bg-teal-500 p-4 text-white flex justify-center items-center gap-4 uppercase tracking-[2px] rounded hover:opacity-80" to={"/shipping"}>Checkout</Link> }
       </aside>
     </div>
   )

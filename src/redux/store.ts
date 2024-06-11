@@ -1,18 +1,29 @@
 // src/store/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import { productAPI } from './api/productAPI';
-import authReducer from './features/auth/authSlice';
+
+import { userAPI } from './api/userAPI';
+import { cartReducer } from './reducer/cartReducer';
+import { orderApi } from './api/orderAPI';
+import { userReducer } from './reducer/userReducer';
+
+export const server = import.meta.env.VITE_SERVER;
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+   
     [productAPI.reducerPath]: productAPI.reducer,
-    
+    [userAPI.reducerPath]: userAPI.reducer,
+    [cartReducer.name]: cartReducer.reducer,
+    [orderApi.reducerPath]:orderApi.reducer,
+    [userReducer.name]: userReducer.reducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(productAPI.middleware),
-
-
+  middleware: (mid)=>[
+    ...mid(),
+    userAPI.middleware,
+    productAPI.middleware,
+    orderApi.middleware
+  ]
 });
 
 
