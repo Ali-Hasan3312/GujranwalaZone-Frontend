@@ -51,7 +51,6 @@ const Products = () => {
 
   if (isError) {
     const err = error as CustomError;
-    console.log(err.data.message);
     toast.error(err.data.message);
   }
 

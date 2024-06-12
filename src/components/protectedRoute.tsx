@@ -1,26 +1,24 @@
-import { ReactElement } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
-interface Props {
-  children?: ReactElement;
-  isAuthenticated: boolean;
+interface ProtectedRouteProps {
   adminOnly?: boolean;
-  admin?: boolean;
-  redirect?: string;
 }
 
-const ProtectedRoute = ({
-  isAuthenticated,
-  children,
-  adminOnly,
-  admin,
-  redirect = "/",
-}: Props) => {
-  if (!isAuthenticated) return <Navigate to={redirect} />;
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ adminOnly = false }) => {
+  const { user } = useSelector((state: RootState) => state.userReducer);
 
-  if (!adminOnly && !admin) return <Navigate to={redirect} />;
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
 
-  return children ? children : <Outlet />;
+  if (adminOnly && user.role !== 'admin') {
+    return <Navigate to="/" />;
+  }
+
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

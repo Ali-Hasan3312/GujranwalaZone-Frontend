@@ -12,8 +12,8 @@ import { MessageResponse } from "../redux/types/api-types";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [gender, setGender] = useState("");
-  const [date, setDate] = useState("");
+  const [gender, setGender] = useState(sessionStorage.getItem('gender') || "");
+  const [date, setDate] = useState(sessionStorage.getItem('date') || "");
   const [login] = useLoginMutation();
   const auth = getAuth();
 
@@ -22,6 +22,9 @@ const Login = () => {
       .then(async (result) => {
         if (result) {
           const user = result.user;
+          const gender = sessionStorage.getItem('gender') || "";
+          const date = sessionStorage.getItem('date') || "";
+
           const res = await login({
             name: user.displayName!,
             email: user.email!,
@@ -36,12 +39,16 @@ const Login = () => {
             toast.success(res.data.message);
             const data = await getUser(user.uid);
             dispatch(userExist(data?.user!));
-            navigate("/")
+            navigate("/");
+            
+            // Clear session storage after successful login
+            sessionStorage.removeItem('gender');
+            sessionStorage.removeItem('date');
           } else {
             const error = res.error as FetchBaseQueryError;
             const message = (error.data as MessageResponse).message;
             toast.error(message);
-            
+
             dispatch(userNotExist());
           }
         }
@@ -50,10 +57,12 @@ const Login = () => {
         console.error("Error during getRedirectResult", error);
         toast.error("Sign In Fail");
       });
-  }, [auth, dispatch, login, date, gender]);
+  }, [auth, dispatch, login, navigate]);
 
   const loginHandler = async () => {
     try {
+      sessionStorage.setItem('gender', gender);
+      sessionStorage.setItem('date', date);
       const provider = new GoogleAuthProvider();
       await signInWithRedirect(auth, provider);
     } catch (error) {

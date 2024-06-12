@@ -1,8 +1,8 @@
+import { useEffect, useMemo, useState } from "react";
 import { Column } from "react-table";
 import TableHOC from "./tableHOC";
-import { useCallback } from "react";
 interface DataType {
-    id: string;
+    _id: string;
     quantity: number;
     discount: number;
     amount: number;
@@ -12,7 +12,7 @@ interface DataType {
   const columns: Column<DataType>[] = [
     {
       Header: "Id",
-      accessor: "id",
+      accessor: "_id",
     },
     {
       Header: "Quantity",
@@ -32,12 +32,29 @@ interface DataType {
     },
   ];
 const DashboardTable = ({ data = [] }: { data: DataType[] }) => {
-    const Table = useCallback(
+  const [rows, setRows] = useState<DataType[]>([]);
+ 
+  useEffect(() => {
+    if (data) {
+      setRows(
+        data.map((i) => ({
+          _id: i._id,
+    quantity: i.quantity,
+    discount: i.discount,
+    amount: i.amount,
+    status: i.status
+        }))
+      );
+    }
+  
+  }, [data]);
+  const Table = useMemo(() =>
         TableHOC<DataType>(
             columns,
-            data,
-            "Top Transaction"
-          ),[]
+            rows,
+            "Top Transaction",
+            rows.length > 6
+          ),[columns,rows]
     );
       return (
         Table()

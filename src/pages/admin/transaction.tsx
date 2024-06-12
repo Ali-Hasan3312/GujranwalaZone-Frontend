@@ -1,13 +1,11 @@
 import { ReactElement, useCallback, useEffect, useState } from 'react'
-import AdminSideBar from '../../components/adminSideBar'
-import { Column } from 'react-table'
-import TableHOC from '../../components/tableHOC'
-import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { Link } from 'react-router-dom'
+import { Column } from 'react-table'
+import AdminSideBar from '../../components/adminSideBar'
+import TableHOC from '../../components/tableHOC'
 import { useAllOrdersQuery } from '../../redux/api/orderAPI'
-import { CustomError } from '../../redux/types/api-types'
-import { toast } from 'react-toastify'
+import { RootState } from '../../redux/store'
 
 interface DataType {
   user: string,
@@ -46,18 +44,10 @@ const columns: Column<DataType>[] = [
 ]
 
 const Transaction = () => {
-  const navigate = useNavigate()
-  const user = useSelector((state: RootState) => state.userReducer.user)
-  const { isError, data, error } = useAllOrdersQuery(user?._id!)
-  const [rows, setRows] = useState<DataType[]>([]);
 
-  useEffect(() => {
-    if (isError) {
-      const err = error as CustomError;
-      toast.error(err.data.message);
-      navigate("/")
-    }
-  }, [isError, error]);
+  const user = useSelector((state: RootState) => state.userReducer.user)
+  const {  data} = useAllOrdersQuery(user?._id!)
+  const [rows, setRows] = useState<DataType[]>([]);
 
   useEffect(() => {
     if (data) {

@@ -27,6 +27,7 @@ const Cart = () => {
     dispatch(removeCartItem(productId));
   };
   useEffect(()=>{
+    if (!couponCode) return;
     const { token: cancelToken, cancel } = axios.CancelToken.source();
     const timeOutId = setTimeout(()=>{
       axios

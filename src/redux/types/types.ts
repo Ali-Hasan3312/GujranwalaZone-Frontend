@@ -53,9 +53,9 @@ export type Order = {
 
 type CountAndChange = {
   revenue: number;
-  product: number;
-  user: number;
-  order: number;
+  products: number;
+  users: number;
+  orders: number;
 };
 
 type LatestTransaction = {
@@ -104,7 +104,7 @@ type UsersAgeGroup = {
 export type Pie = {
   orderFullfillment: OrderFullfillment;
   productCategories: Record<string, number>[];
-  stockAvailablity: {
+  stockAvailability: {
     inStock: number;
     outOfStock: number;
   };
