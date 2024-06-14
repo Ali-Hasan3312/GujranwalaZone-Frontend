@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ProductCard from "../components/productCard"
 import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
 import { useDispatch } from "react-redux"
@@ -7,6 +7,7 @@ import { toast } from "react-toastify"
 import { addToCart } from "../redux/reducer/cartReducer"
 import { CustomError } from "../redux/types/api-types"
 import { server } from "../redux/store"
+import { HiMenuAlt4 } from "react-icons/hi"
 
 const Search = () => {
   const {
@@ -49,9 +50,43 @@ if (productIsError) {
   const err = productError as CustomError;
   toast.error(err.data.message);
 }
+
+const [showModal, setShowModal] = useState<boolean>(false);
+const [phoneActive, setPhoneActive] = useState<boolean>(
+  window.innerWidth < 1100
+);
+
+const resizeHandler = () => {
+  setPhoneActive(window.innerWidth < 1100);
+};
+
+useEffect(() => {
+  window.addEventListener("resize", resizeHandler);
+
+  return () => {
+    window.removeEventListener("resize", resizeHandler);
+  };
+}, []);
   return (
-    <div className="search p-8 flex justify-start items-stretch gap-8 min-h-[93.5vh]">
-      <aside className=" min-w-60 shadow-[2px_5px_10px_rgba(0,0,0,0.247)] p-8 flex flex-col justify-start items-stretch gap-4">
+    <>
+    {phoneActive && (
+      <button id="hamburger" onClick={() => setShowModal(true)} className=' grid place-items-center h-12 w-12 md:h-6 md:w-6 border-none outline-none cursor-pointer text-blue-500 bg-opacity-100 fixed top-4 left-4 text-3xl bg-white rounded-full z-[9]'>
+        <HiMenuAlt4 />
+      </button>
+    )}
+    <div className="search overflow-auto md:pl-6 md:w-[420px] p-8 flex justify-start items-stretch gap-8 min-h-[93.5vh]">
+      <aside style={
+          phoneActive
+            ? {
+                width: "20rem",
+                height: "50vh",
+                position: "fixed",
+                top: 0,
+                left: showModal ? "0" : "-20rem",
+                transition: "all 0.5s",
+              }
+            : {}
+        } className='min-w-60 shadow-[2px_5px_10px_rgba(0,0,0,0.247)] p-8 flex flex-col justify-start items-stretch gap-4  md:bg-white md:p-4 md:z-10 md:overflow-y-auto md:overflow-hidden'>
         <h2 className=" tracking-[3px] uppercase text-xl font-normal text-gray-700">Filters</h2>
         <div>
           <h4 className=" font-semibold">Sort</h4>
@@ -84,8 +119,13 @@ if (productIsError) {
             
           </select>
         </div>
+        {phoneActive && (
+          <button id="close-sidebar" onClick={() => setShowModal(false)} className=' w-[80%] my-4 mx-auto block p-3 border-none outline-none cursor-pointer bg-red-500 text-white rounded-lg'>
+            Close
+          </button>
+        )}
       </aside>
-      <main className=" w-full px-8">
+      <main className=" w-full md:w-[360px] px-8">
         <h1 className=" tracking-[3px] uppercase text-2xl font-normal text-gray-700">Products</h1>
         <input type="text"
         placeholder="Search by name"
@@ -106,7 +146,7 @@ if (productIsError) {
               />
             ))}
         </div>
-        <article className="flex justify-center items-center gap-4">
+        <article className="flex justify-center items-center gap-4 md:mt-6">
           <button 
           disabled={!isPrevPage}
           onClick={()=>setPage((prev)=> prev-1)}
@@ -122,6 +162,7 @@ if (productIsError) {
         </article>
       </main>
     </div>
+    </>
   )
 }
 

@@ -60,8 +60,8 @@ const Cart = () => {
   }, [cartItems]);
   
   return (
-    <div className="Cart py-8 px-16 flex justify-between gap-12">
-      <main className=" w-[70%] tracking-[2px] font-light uppercase text-center overflow-y-auto mt-[-130px]">
+    <div className="Cart h-full w-[480px] py-8 px-16 md:pr-8  md:mt-8  flex md:flex-col md:justify-center md:items-center md:ml-[-80px] justify-between gap-12">
+      <main className=" w-[60%] md:w-full md:h-full tracking-[2px] font-light uppercase text-center overflow-y-auto mt-[-130px]">
         {
           cartItems.length > 0 ? (
             cartItems.map((i,idx)=>(
@@ -76,7 +76,7 @@ const Cart = () => {
           )
         }
       </main>
-      <aside className=" w-[30%] p-12 flex flex-col justify-center items-stretch gap-6 mt-10">
+      <aside className=" w-[40%] md:w-full p-12 flex  flex-col justify-center items-stretch gap-6 mt-10">
         <p>Subtotal: Rs{subtotal}</p>
         <p>Shipping Charges: Rs{shippingCharges}</p>
         <p>Tax: Rs{tax}</p>

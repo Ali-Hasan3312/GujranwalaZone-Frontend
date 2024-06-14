@@ -32,7 +32,7 @@ const TransactionManagement = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const {data, isError } = useOrderDetailsQuery(params.id!);
+  const {data } = useOrderDetailsQuery(params.id!);
   const {
     shippingInfo: { address, city, state, country, pinCode },
     orderItems,
@@ -62,28 +62,12 @@ const TransactionManagement = () => {
     responseToast(res, navigate, "/admin/transaction");
   };
   
-  
- 
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
+    <div className='grid no-scrollbar overflow-auto grid-cols-[20%_80%] gap-4 md:h-[1000px] pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
     <AdminSideBar />
-    <main className="overflow-y-auto w-full flex flex-row justify-center p-16">
-      <section className="h-[100vh] mr-[-60px] p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
-        <h2 className=" tracking-wider uppercase text-center font-semibold">Order Items</h2>
-        {
-          orderItems.map((i) => (
-            <ProductCard 
-            name={i.name}
-            photo={i.photo}
-            price={i.price}
-            quantity={i.quantity}
-            productId={i._id}
-            _id={i._id}
-            />
-          ))
-        }
-      </section>
-      <article className="h-[100vh] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
+    <main className="no-scrollbar overflow-y-auto md:h-[1000px] w-full flex flex-row justify-center md:flex-col md:justify-center md:items-center md:mt-20 md:gap-8 p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
+     
+      <article className="no-scrollbar md:h-[1000px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
       <button className="product-delete-btn bg-gray-800 text-white text-[1.2rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center rounded-full cursor-pointer border-none absolute -top-[1.2rem] -right-[1.2rem]" onClick={deleteHandler}>
                 <FaTrash className=""/>
               </button>
@@ -119,6 +103,21 @@ const TransactionManagement = () => {
 
           <button onClick={()=>updateHandler()} className=" my-8 p-2 text-lg cursor-pointer rounded hover:opacity-80 border-none bg-blue-500 text-white w-full">Process Status</button>
       </article>
+      <section className="no-scrollbar h-[100vh] p-8 mr-[90px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
+        <h2 className=" tracking-wider uppercase text-center font-semibold">Order Items</h2>
+        {
+          orderItems.map((i) => (
+            <ProductCard 
+            name={i.name}
+            photo={i.photo}
+            price={i.price}
+            quantity={i.quantity}
+            productId={i._id}
+            _id={i._id}
+            />
+          ))
+        }
+      </section>
     </main>
   </div>
   )

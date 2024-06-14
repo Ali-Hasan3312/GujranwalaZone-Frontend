@@ -73,7 +73,7 @@ const Orders = () => {
                 {i.status}
               </span>
             ),
-            action: <Link to={`/orders/orderDetails/${i._id}`} className=' bg-blue-300 hover:bg-inherit hover:text-black hover:transition-all p-1 rounded-lg text-blue-700'>Order Details</Link>,
+            action: <Link to={`/orders/orderDetails/${i._id}`} className=' bg-blue-300 hover:bg-inherit hover:text-black hover:transition-all p-1 rounded-lg text-blue-700'>Details</Link>,
           }))
         );
       }

@@ -21,13 +21,14 @@ const Home = () => {
     <div className="home mt-[-30px] py-8 px-[5%] flex flex-col w-full h-full">
       <section className=" w-full mx-auto h-[250px]">
         
-      </section>
+        </section>
       <h1 className=' tracking-wide font-normal text-xl uppercase mt-12 flex flex-row justify-between items-centre'>
         Latest Products
         <Link to={"/search"} className="findMore text-base">More</Link>
       </h1>
-      <main className="noScrollbar w-full flex-[1] flex gap-4 overflow-x-auto">
-        {data?.products.map((i)=>(
+      <main className=" flex flex-wrap no-scrollbar  ">
+      
+       {data?.products.map((i)=>(
          <ProductCard 
          key={i._id}
          productId={i._id}
@@ -38,6 +39,7 @@ const Home = () => {
          photo={`${server}/${i.photo}`}
          />
         ))}
+       
       
      
       </main>

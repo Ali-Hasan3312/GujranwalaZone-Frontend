@@ -83,21 +83,11 @@ const ProductManagement = () => {
   }, [data]);
   if (isError) return <Navigate to={"/404"} />;
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
+    <div className='grid no-scrollbar overflow-auto grid-cols-[20%_80%] gap-4 md:h-[1000px] pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
       <AdminSideBar />
-      <main className="overflow-y-auto w-full flex flex-row justify-center p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
-        <section className="h-[100vh] p-8 mr-[-60px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
-          <strong className=" font-light">ID -{data?.product._id}</strong>
-          <img src={`${server}/${photo}`} alt="Product" className=" h-full w-full object-cover" />
-          <p className=" tracking-wide font-bold text-gray-500 uppercase text-center text-sm">{name}</p>
-          {stock > 0? (
-            <span className=" absolute right-8 top-8 text-green-500">{stock} Available</span>
-          ):(
-            <span className=" absolute right-8 top-8 text-red-500">Not Available</span>
-          )}
-          <h3 className=" text-2xl text-center font-bold">${price}</h3>
-        </section>
-        <article className=" h-[100vh] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto ">
+      <main className="overflow-y-auto md:h-[1000px] w-full flex flex-row justify-center md:flex-col md:justify-center md:items-center md:mt-20 md:gap-8 p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
+        
+        <article className=" md:h-[1000px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto ">
         <button className="product-delete-btn bg-gray-800 text-white text-[1.2rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center rounded-full cursor-pointer border-none absolute -top-[1.2rem] -right-[1.2rem]" onClick={deleteHandler}>
                 <FaTrash className=""/>
               </button>
@@ -150,6 +140,17 @@ const ProductManagement = () => {
             <button type="submit" className=" p-2 border-none bg-blue-700 text-white w-full rounded cursor-pointer hover:opacity-80">Update</button>
           </form>
         </article>
+        <section className="h-[100vh] p-8 mr-[90px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
+          <strong className=" font-light">ID -{data?.product._id}</strong>
+          <img src={`${server}/${photo}`} alt="Product" className=" h-full w-full object-cover" />
+          <p className=" tracking-wide font-bold text-gray-500 uppercase text-center text-sm">{name}</p>
+          {stock > 0? (
+            <span className=" absolute right-8 top-8 text-green-500">{stock} Available</span>
+          ):(
+            <span className=" absolute right-8 top-8 text-red-500">Not Available</span>
+          )}
+          <h3 className=" text-2xl text-center font-bold">${price}</h3>
+        </section>
       </main>
     </div>
   )
