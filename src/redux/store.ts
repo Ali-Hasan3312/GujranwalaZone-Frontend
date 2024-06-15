@@ -20,13 +20,13 @@ export const store = configureStore({
     [userReducer.name]: userReducer.reducer,
     [dashboardApi.reducerPath]:dashboardApi.reducer
   },
-  middleware: (mid)=>[
-    ...mid(),
-    userAPI.middleware,
-    productAPI.middleware,
-    orderApi.middleware,
-    dashboardApi.middleware
-  ]
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(
+      userAPI.middleware,
+      productAPI.middleware,
+      orderApi.middleware,
+      dashboardApi.middleware
+    ),
 });
 
 
