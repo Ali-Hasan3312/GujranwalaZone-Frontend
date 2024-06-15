@@ -65,9 +65,9 @@ const TransactionManagement = () => {
   return (
     <div className='grid no-scrollbar overflow-auto grid-cols-[20%_80%] gap-4 md:h-[1000px] pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
     <AdminSideBar />
-    <main className="no-scrollbar overflow-y-auto md:h-[1000px] w-full flex flex-row justify-center md:flex-col md:justify-center md:items-center md:mt-20 md:gap-8 p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
+    <main className="no-scrollbar lg:ml-[-70px] overflow-y-auto md:h-[1000px] w-full flex flex-row justify-center md:flex-col md:justify-center md:items-center md:mt-20 md:gap-8 p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
      
-      <article className="no-scrollbar md:h-[1000px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
+      <article className="no-scrollbar lg:mr-[-100px] md:h-[1000px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
       <button className="product-delete-btn bg-gray-800 text-white text-[1.2rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center rounded-full cursor-pointer border-none absolute -top-[1.2rem] -right-[1.2rem]" onClick={deleteHandler}>
                 <FaTrash className=""/>
               </button>

@@ -60,7 +60,7 @@ const Cart = () => {
   }, [cartItems]);
   
   return (
-    <div className="Cart h-full w-[480px] py-8 px-16 md:pr-8  md:mt-8  flex md:flex-col md:justify-center md:items-center md:ml-[-80px] justify-between gap-12">
+    <div className="Cart h-full w-full md:w-[480px] py-8 px-16 md:pr-8  md:mt-8  flex md:flex-col md:justify-center md:items-center md:ml-[-80px] justify-between gap-12">
       <main className=" w-[60%] md:w-full md:h-full tracking-[2px] font-light uppercase text-center overflow-y-auto mt-[-130px]">
         {
           cartItems.length > 0 ? (

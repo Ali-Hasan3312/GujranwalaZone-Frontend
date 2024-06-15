@@ -87,7 +87,7 @@ const ProductManagement = () => {
       <AdminSideBar />
       <main className="overflow-y-auto md:h-[1000px] w-full flex flex-row justify-center md:flex-col md:justify-center md:items-center md:mt-20 md:gap-8 p-16 lg:p-8 sm:flex-col sm:items-center sm:p-0">
         
-        <article className=" md:h-[1000px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto ">
+        <article className=" md:h-[1000px] lg:mr-[-67px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto ">
         <button className="product-delete-btn bg-gray-800 text-white text-[1.2rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center rounded-full cursor-pointer border-none absolute -top-[1.2rem] -right-[1.2rem]" onClick={deleteHandler}>
                 <FaTrash className=""/>
               </button>
@@ -140,7 +140,7 @@ const ProductManagement = () => {
             <button type="submit" className=" p-2 border-none bg-blue-700 text-white w-full rounded cursor-pointer hover:opacity-80">Update</button>
           </form>
         </article>
-        <section className="h-[100vh] p-8 mr-[90px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
+        <section className=" p-8 mr-[120px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
           <strong className=" font-light">ID -{data?.product._id}</strong>
           <img src={`${server}/${photo}`} alt="Product" className=" h-full w-full object-cover" />
           <p className=" tracking-wide font-bold text-gray-500 uppercase text-center text-sm">{name}</p>

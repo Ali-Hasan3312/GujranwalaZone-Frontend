@@ -43,7 +43,7 @@ const AdminSideBar = () => {
               }
             : {}
         }>
-    <h2>Logo.</h2>
+    <h2 className=' tracking-wider font-semibold uppercase my-2 mx-0 mt-[-20px]'>Gujranwala Zone</h2>
     <div className='my-4 mx-4'>
         <h5 className=' tracking-wider font-light uppercase opacity-80 my-2 mx-0'>Dashboard</h5>
         
