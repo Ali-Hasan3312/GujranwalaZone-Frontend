@@ -1,11 +1,10 @@
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
+import { toast } from "react-toastify"
 import ProductCard from "../components/productCard"
 import { useLatestProductsQuery } from "../redux/api/productAPI"
-import { useDispatch } from "react-redux"
-import { CartItem } from "../redux/types/types"
-import { toast } from "react-toastify"
 import { addToCart } from "../redux/reducer/cartReducer"
-import { server } from "../redux/store"
+import { CartItem } from "../redux/types/types"
 
 
 const Home = () => {
@@ -36,7 +35,7 @@ const Home = () => {
          price={i.price}
          stock={i.stock}
          handler={addToCartHandler}
-         photo={`${server}/${i.photo}`}
+         photo={`${i.photo}`}
          />
         ))}
        

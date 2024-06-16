@@ -29,7 +29,7 @@ const Dashboard = () => {
   const latestTransaction = stats?.latestTransaction ;
  
   return (
-    <div className='admin-container  grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
+    <div className='admin-container  grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 md:overflow-auto md:grid-cols-[1fr]'>
       <AdminSideBar />
       
       <main className='dashboard no-scrollbar overflow-y-auto w-full lg:justify-center lg:flex-wrap'>

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import AdminSideBar from '../../components/adminSideBar';
 import TableHOC from '../../components/tableHOC';
 import { useAllProductsQuery } from '../../redux/api/productAPI';
-import { RootState, server } from '../../redux/store';
+import { RootState } from '../../redux/store';
 import { CustomError } from '../../redux/types/api-types';
 
 interface DataType {
@@ -58,7 +58,7 @@ const Products = () => {
     if (data) {
       setRows(
         data.products.map((i) => ({
-          photo: <img src={`${server}/${i.photo}`} alt={`${i.name} photo`} className=' h-16 w-16' />,
+          photo: <img src={`${i.photo}`} alt={`${i.name} photo`} className=' h-16 w-16' />,
           name: i.name,
           price: i.price,
           stock: i.stock,

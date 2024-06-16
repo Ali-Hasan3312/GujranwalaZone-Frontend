@@ -27,7 +27,7 @@ const ProductManagement = () => {
   const [stockUpdate, setStockUpdate] = useState<number>(stock);
   const [categoryUpdate, setCategoryUpdate] = useState<string>(category);
   const [photoUpdate, setPhotoUpdate] = useState<string>("");
-  const [photoFile, setPhotoFile] = useState<File>();
+  const [photoFile, setPhotoFile] = useState<File | string>();
   const changeImageHandler= (e: ChangeEvent<HTMLInputElement>)=>{
     const file: File | undefined = e.target.files?.[0];
     const reader: FileReader = new FileReader();
@@ -36,7 +36,7 @@ const ProductManagement = () => {
       reader.onloadend = ()=>{
         if(typeof reader.result==="string"){
           setPhotoUpdate(reader.result)
-          setPhotoFile(file)
+          setPhotoFile(`${server}/${file}`)
           
           
         }
@@ -142,7 +142,7 @@ const ProductManagement = () => {
         </article>
         <section className=" p-8 mr-[120px] w-full max-w-96 bg-white shadow-gray-700 shadow-sm m-auto flex flex-col gap-4 relative rounded sm:max-w-[400px]">
           <strong className=" font-light">ID -{data?.product._id}</strong>
-          <img src={`${server}/${photo}`} alt="Product" className=" h-full w-full object-cover" />
+          <img src={`${photo}`} alt="Product" className=" h-full w-full object-cover" />
           <p className=" tracking-wide font-bold text-gray-500 uppercase text-center text-sm">{name}</p>
           {stock > 0? (
             <span className=" absolute right-8 top-8 text-green-500">{stock} Available</span>

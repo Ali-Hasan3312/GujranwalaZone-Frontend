@@ -24,8 +24,6 @@ const defaultData: Order = {
 const OrderDetails = () => {
   const params = useParams();
   const { data } = useOrderDetailsQuery(params.id!);
-  let myphoto = data?.order.orderItems.map((i)=>i.photo)
-  console.log(`${myphoto}`);
   const {
     shippingInfo: { address, city, state, country, pinCode },
     orderItems,
