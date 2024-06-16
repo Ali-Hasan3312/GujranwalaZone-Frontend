@@ -12,10 +12,10 @@ export default {
       'md': {'max':'1100px'},
       // => @media (max-width: 1100px) {Targets medium-sized tablets like iPad.  }
 
-      'lg': {'min':'1200px'} 
+      'lg': {'min':'1200px'},
        // => @media (max-width: 1200px) {Targets large tablets. }
 
-      
+      'xl': {'max':'1199px'}
     },
     extend: {},
   },

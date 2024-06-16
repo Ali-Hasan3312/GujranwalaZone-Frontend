@@ -29,17 +29,17 @@ const Dashboard = () => {
   const latestTransaction = stats?.latestTransaction ;
  
   return (
-    <div className='admin-container  grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 md:overflow-auto md:grid-cols-[1fr]'>
+    <div className='admin-container  grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 xl:overflow-auto md:grid-cols-[1fr]'>
       <AdminSideBar />
       
-      <main className='dashboard no-scrollbar overflow-y-auto w-full lg:justify-center lg:flex-wrap'>
+      <main className='dashboard no-scrollbar overflow-y-auto w-full xl:justify-center xl:flex-wrap'>
         <div className=' h-10 px-2 py-4 flex-row border-b-2 border-black border-opacity-35 border-solid flex content-center items-center gap-4'>
           <BsSearch />
           <input type="text" placeholder='Search for data, users, docs' className=' mr-auto w-full py-4 px-0 border-none outline-none bg-inherit' />
           <FaRegBell className=' opacity-70 text-sm'/>
           <img src={user?.photo || userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
         </div>
-        <section className='widget-container flex flex-row justify-between items-stretch gap-8 p-8 pr-8 pb-8 lg:justify-center lg:flex-wrap'>
+        <section className='widget-container flex flex-row justify-between items-stretch gap-8 p-8 pr-8 pb-8 xl:justify-center xl:flex-wrap'>
           <WidgetItem
             percent={changePercent?.revenue || 0}
             amount={true}
@@ -66,7 +66,7 @@ const Dashboard = () => {
             color='indigo'
           />
         </section>
-        <section className='graph-container flex flex-row gap-8 pt-0 pr-2 pb-2 pl-0 lg:justify-center lg:flex-wrap lg:p-8'>
+        <section className='graph-container flex flex-row gap-8 pt-0 pr-2 pb-2 pl-0 xl:justify-center xl:flex-wrap xl:p-8'>
           <div className='bg-white rounded-lg w-full py-4 px-12'>
             <h2 className=' tracking-wider font-semibold uppercase opacity-80 mt-4  mr-0 mb-1 ml-1 text-center relative bottom-2'>Revenue & Transactions</h2>
             <BarChart 
@@ -97,7 +97,7 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <section className="transaction-container flex gap-8 pt-0 pr-8 pb-8 pl-0 h-[30rem] mt-4 lg:justify-center lg:flex-wrap lg:p-8 lg:h-0">
+        <section className="transaction-container flex gap-8 pt-0 pr-8 pb-8 pl-0 h-[30rem] mt-4 xl:justify-center xl:flex-wrap xl:p-8 xl:h-0">
           <div className="gender-chart bg-white shadow-md rounded-lg w-full max-w-80 p-4 relative">
             <h2 className=' text-center mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold'>Gender Ratio</h2>
             <DoughnutChart 

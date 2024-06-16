@@ -2,10 +2,10 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AdminSideBar from "../../../components/adminSideBar";
-import { useNewProductMutation } from "../../../redux/api/productAPI";
-import { RootState, server } from "../../../redux/store";
-import { responseToast } from "../../../redux/utils/features";
 import Loader from "../../../components/loader";
+import { useNewProductMutation } from "../../../redux/api/productAPI";
+import { RootState } from "../../../redux/store";
+import { responseToast } from "../../../redux/utils/features";
 
 const NewProduct = () => {
   const [name, setName] = useState<string>("");
@@ -13,7 +13,7 @@ const NewProduct = () => {
   const [stock, setStock] = useState<number>(0);
   const [category, setCategory] = useState<string>("");
   const [photoPrev, setPhotoPrev] = useState<string>("");
-  const [photo, setPhoto] = useState<File | string>();
+  const [photo, setPhoto] = useState<File>();
   const [newProductMutation, { isLoading }] = useNewProductMutation();
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const NewProduct = () => {
       reader.onloadend = () => {
         if (typeof reader.result === "string") {
           setPhotoPrev(reader.result);
-          setPhoto(`${server}/${file}`);
+          setPhoto(file);
         }
       };
     }

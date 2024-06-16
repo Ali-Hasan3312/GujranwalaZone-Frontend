@@ -5,6 +5,7 @@ import ProductCard from "../components/productCard"
 import { useLatestProductsQuery } from "../redux/api/productAPI"
 import { addToCart } from "../redux/reducer/cartReducer"
 import { CartItem } from "../redux/types/types"
+import { server } from "../redux/store"
 
 
 const Home = () => {
@@ -35,7 +36,7 @@ const Home = () => {
          price={i.price}
          stock={i.stock}
          handler={addToCartHandler}
-         photo={`${i.photo}`}
+         photo={`${server}/${i.photo}`}
          />
         ))}
        
