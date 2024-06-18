@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
+import { HiMenuAlt4 } from "react-icons/hi"
+import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
 import ProductCard from "../components/productCard"
 import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
-import { useDispatch } from "react-redux"
-import { CartItem } from "../redux/types/types"
-import { toast } from "react-toastify"
 import { addToCart } from "../redux/reducer/cartReducer"
 import { CustomError } from "../redux/types/api-types"
-import { server } from "../redux/store"
-import { HiMenuAlt4 } from "react-icons/hi"
+import { CartItem } from "../redux/types/types"
 
 const Search = () => {
   const {
@@ -142,7 +141,7 @@ useEffect(() => {
                 price={i.price}
                 stock={i.stock}
                 handler={addToCartHandler}
-                photo={`${server}/${i.photo}`}
+                photo={i.photo}
               />
             ))}
         </div>
