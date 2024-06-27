@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { auth } from "../../firebase";
 import { getUser, useLoginMutation } from "../redux/api/userAPI";
 import { userExist, userNotExist } from "../redux/reducer/userReducer";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { MessageResponse } from "../redux/types/api-types";
 
 const Login = () => {
@@ -15,56 +16,45 @@ const Login = () => {
   const [gender, setGender] = useState(sessionStorage.getItem('gender') || "");
   const [date, setDate] = useState(sessionStorage.getItem('date') || "");
   const [login] = useLoginMutation();
-  const auth = getAuth();
+  // const auth = getAuth();
 
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then(async (result) => {
-        if (result) {
-          const user = result.user;
-          const gender = sessionStorage.getItem('gender') || "";
-          const date = sessionStorage.getItem('date') || "";
-
-          const res = await login({
-            name: user.displayName!,
-            email: user.email!,
-            photo: user.photoURL!,
-            gender,
-            role: "user",
-            dob: date,
-            _id: user.uid,
-          });
-
-          if (res.data) {
-            toast.success(res.data.message);
-            const data = await getUser(user.uid);
-            dispatch(userExist(data?.user!));
-            navigate("/");
-            
-            // Clear session storage after successful login
-            sessionStorage.removeItem('gender');
-            sessionStorage.removeItem('date');
-          } else {
-            const error = res.error as FetchBaseQueryError;
-            const message = (error.data as MessageResponse).message;
-            toast.error(message);
-
-            dispatch(userNotExist());
-          }
-        }
-      })
-      .catch((error) => {
-        console.error("Error during getRedirectResult", error);
-        toast.error("Sign In Fail");
-      });
-  }, [auth, dispatch, login, navigate]);
-
+ 
   const loginHandler = async () => {
     try {
-      sessionStorage.setItem('gender', gender);
-      sessionStorage.setItem('date', date);
       const provider = new GoogleAuthProvider();
-      await signInWithRedirect(auth, provider);
+      const { user } = await signInWithPopup(auth, provider);
+
+      console.log({
+        name: user.displayName!,
+        email: user.email!,
+        photo: user.photoURL!,
+        gender,
+        role: "user",
+        dob: date,
+        _id: user.uid,
+      });
+
+      const res = await login({
+        name: user.displayName!,
+        email: user.email!,
+        photo: user.photoURL!,
+        gender,
+        role: "user",
+        dob: date,
+        _id: user.uid,
+      });
+
+      if (res.data) {
+        toast.success(res.data.message);
+        const data = await getUser(user.uid);
+        dispatch(userExist(data?.user!));
+        navigate("/");
+      } else {
+        const error = res.error as FetchBaseQueryError;
+        const message = (error.data as MessageResponse).message;
+        toast.error(message);
+        dispatch(userNotExist());
+      }
     } catch (error) {
       toast.error("Sign In Fail");
     }
