@@ -17,7 +17,6 @@ const Home = () => {
   return (
     <div className="home mt-[-30px] py-8 px-[5%] flex flex-col w-full h-full">
       <section className=" w-full mx-auto h-[250px]">
-        
         </section>
       <h1 className=' tracking-wide font-normal text-xl uppercase mt-12 flex flex-row justify-between items-centre'>
         Latest Products
