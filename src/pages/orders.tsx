@@ -51,7 +51,6 @@ const Orders = () => {
       const err = error as CustomError;
       toast.error(err.data.message);
     }
-  
     useEffect(() => {
       if (data){
         setRows(
