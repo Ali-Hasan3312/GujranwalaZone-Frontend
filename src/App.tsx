@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { lazy, Suspense, useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
