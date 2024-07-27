@@ -94,8 +94,8 @@ const ProductCard = ({
   quantity,
   productId,
 }: OrderItem) => (
-  <div className="transaction-product-card">
-    <img src={`${photo}`} alt={name} />
+  <div className="transaction-product-card mt-6">
+    <img className=" h-40 w-40" src={`${photo}`} alt={name} />
     <Link to={`/product/${productId}`}>{name}</Link>
     <span>
       ₹{price} X {quantity} = ₹{price * quantity}

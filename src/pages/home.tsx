@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
-import { toast } from "react-toastify"
+import toast from "react-hot-toast";
 import ProductCard from "../components/productCard"
 import { useLatestProductsQuery } from "../redux/api/productAPI"
 import { addToCart } from "../redux/reducer/cartReducer"

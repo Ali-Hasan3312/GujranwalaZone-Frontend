@@ -4,9 +4,10 @@ import {
   AllUsersResponse,
   DeleteUserRequest,
   MessageResponse,
+  NewUserRequest,
   UserResponse,
 } from "../types/api-types";
-import { User } from "../types/types";
+
 
 export const userAPI = createApi({
   reducerPath: "userApi",
@@ -15,11 +16,11 @@ export const userAPI = createApi({
   }),
   tagTypes: ["users"],
   endpoints: (builder) => ({
-    login: builder.mutation<MessageResponse, User>({
-      query: (user) => ({
+    register: builder.mutation<MessageResponse, NewUserRequest>({
+      query: ({formData}) => ({
         url: "new",
         method: "POST",
-        body: user,
+        body: formData,
       }),
       invalidatesTags: ["users"],
     }),
@@ -51,5 +52,5 @@ export const getUser = async (id: string) => {
   }
 };
 
-export const { useLoginMutation, useAllUsersQuery, useDeleteUserMutation } =
+export const { useRegisterMutation, useAllUsersQuery, useDeleteUserMutation } =
   userAPI;

@@ -3,7 +3,7 @@ import { FaPlus } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Column } from 'react-table';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import AdminSideBar from '../../components/adminSideBar';
 import TableHOC from '../../components/tableHOC';
 import { useAllProductsQuery } from '../../redux/api/productAPI';

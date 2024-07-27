@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { BiShoppingBag } from 'react-icons/bi'
 import { FaSearch, FaSignOutAlt } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import toast from "react-hot-toast";
 
 import { signOut } from 'firebase/auth'
 import { auth } from '../../firebase'

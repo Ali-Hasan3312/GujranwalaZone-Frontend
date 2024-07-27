@@ -1,12 +1,13 @@
 export type User = {
   name: string;
   email: string;
-  photo: string;
+  photo: File | undefined;
   gender: string;
   role: string;
   dob: string;
   _id: string;
 };
+
 
 export type Product = {
   name: string;

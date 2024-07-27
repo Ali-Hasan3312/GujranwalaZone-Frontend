@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { HiMenuAlt4 } from "react-icons/hi"
 import { useDispatch } from "react-redux"
-import { toast } from "react-toastify"
+import toast from "react-hot-toast";
 import ProductCard from "../components/productCard"
 import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
 import { addToCart } from "../redux/reducer/cartReducer"

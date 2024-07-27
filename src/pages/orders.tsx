@@ -5,7 +5,7 @@ import { Column } from 'react-table';
 import TableHOC from '../components/tableHOC';
 import { RootState } from '../redux/store';
 import { useMyOrdersQuery } from '../redux/api/orderAPI';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import { CustomError } from '../redux/types/api-types';
 
 type DataType = {

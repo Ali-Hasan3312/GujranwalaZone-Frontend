@@ -15,7 +15,7 @@ interface ProductsProps{
 const ProductCard = ({productId,photo,name,price,stock,handler}:ProductsProps) => {
   return (
     <div className="productcard no-scrollbar w-[12.75rem] h-[16rem] no-scrollbar sm:h-36 sm:w-36 sm:p-6 sm:mt-8 p-4 flex flex-col justify-center items-center relative bg-white  gap-1">
-        <img src={photo} alt={name} className=" m-4 object-cover" />
+        <img src={photo} alt={name} className=" h-40 w-40 m-4 object-cover" />
         <p>{name}</p>
         <span className=" font-bold text-lg">Rs{price}</span>
         <div className=" opacity-0 absolute w-full h-full top-0 left-0 bg-black bg-opacity-25 hover:opacity-100 flex flex-row justify-center items-center gap-4">
