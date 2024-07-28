@@ -18,7 +18,6 @@ const Cart = lazy(() => import("./pages/cart"));
 const Shipping = lazy(() => import("./pages/shipping.tsx"));
 const Login = lazy(() => import("./pages/login.tsx"));
 const Register = lazy(() => import("./pages/register.tsx"));
-
 const Orders = lazy(() => import("./pages/orders.tsx"));
 const NotFound = lazy(() => import("./pages/not-found"));
 
