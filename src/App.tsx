@@ -44,7 +44,6 @@ const OrderDetails = lazy(() => import("./pages/orderDetails.tsx"));
 function App() {
   const { user } = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch();
-
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
