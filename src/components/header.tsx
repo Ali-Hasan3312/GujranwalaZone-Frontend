@@ -36,7 +36,7 @@ const Header = ({ user }: PropsType) => {
             {user?._id ? (
                 <>
                     <button onClick={() => setIsOpen(true)} className='border-none text-lg cursor-pointer bg-transparent hover:text-teal-500 mb-9'>
-                        <img src={user.photo} alt="" className='h-8 w-8 mt-[-3px] rounded-full' />
+                        <img src={typeof user.photo === 'string' ? user.photo : ''} alt="" className='h-8 w-8 mt-[-3px] rounded-full' />
                     </button>
                     <dialog open={isOpen} className='firstdialog border border-solid border-gray-300 rounded p-3 w-[100px]'>
                         <div className='flex flex-col justify-start items-center gap-1'>

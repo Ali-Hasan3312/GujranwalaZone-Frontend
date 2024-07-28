@@ -37,7 +37,7 @@ const Dashboard = () => {
           <BsSearch />
           <input type="text" placeholder='Search for data, users, docs' className=' mr-auto w-full py-4 px-0 border-none outline-none bg-inherit' />
           <FaRegBell className=' opacity-70 text-sm'/>
-          <img src={user?.photo || userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
+          <img src={typeof user?.photo === 'string' ? user.photo : '' || userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
         </div>
         <section className='widget-container flex flex-row justify-between items-stretch gap-8 p-8 pr-8 pb-8 xl:justify-center xl:flex-wrap'>
           <WidgetItem

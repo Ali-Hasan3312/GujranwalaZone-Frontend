@@ -57,7 +57,7 @@ const Customers = () => {
     if (data) {
       setRows(
         data.users.map((i) => ({
-          photo: <img src={i.photo} alt={`${i.name} photo`} className=' h-16 w-16' />,
+          photo: <img src={typeof i.photo === 'string' ? i.photo : ''} alt={`${i.name} photo`} className=' h-16 w-16' />,
           name: i.name,
           email: i.email,
           gender: i.gender,
