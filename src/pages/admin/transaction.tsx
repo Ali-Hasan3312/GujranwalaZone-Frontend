@@ -53,10 +53,10 @@ const Transaction = () => {
     if (data) {
       setRows(
         data.orders.map((i) => ({
-          user: i.user.name,
-          amount: i.total,
-          discount: i.discount,
-          quantity: i.orderItems.length,
+          user: i.user.name!,
+          amount: i.total!,
+          discount: i.discount!,
+          quantity: i.orderItems.length!,
           status: (
             <span
               className={

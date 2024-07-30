@@ -51,7 +51,9 @@ const Customers = () => {
   const [deleteUser] = useDeleteUserMutation()
   const deleteHandler = async(userId: string)=>{
     const res = await deleteUser({ userId, adminUserId: user?._id! });
-    responseToast(res, navigate, "/admin/customers");
+    
+      responseToast(res, navigate, "/admin/customers");
+    
   }
   useEffect(() => {
     if (data) {
