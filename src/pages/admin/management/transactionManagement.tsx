@@ -33,10 +33,11 @@ const TransactionManagement = () => {
   const navigate = useNavigate();
 
   const {data } = useOrderDetailsQuery(params.id!);
+  let name;
   const {
     shippingInfo: { address, city, state, country, pinCode },
     orderItems,
-    user: { name },
+    
     status,
     tax,
     subtotal,
@@ -44,6 +45,9 @@ const TransactionManagement = () => {
     discount,
     shippingCharges,
   } = data?.order || defaultData;
+  if(data?.order?.user?.name){
+   name = data.order.user.name
+  }
   const [updateOrder] = useUpdateOrderMutation();
   const [deleteOrder] = useDeleteOrderMutation();
 
@@ -108,6 +112,7 @@ const TransactionManagement = () => {
         {
           orderItems.map((i) => (
             <ProductCard 
+            key={i._id}
             name={i.name}
             photo={i.photo}
             price={i.price}
