@@ -145,7 +145,7 @@ useEffect(() => {
               />
             ))}
         </div>
-        <article className="flex justify-center items-center gap-4 md:mt-6">
+        <article className="flex justify-center items-center gap-4 mt-6">
           <button 
           disabled={!isPrevPage}
           onClick={()=>setPage((prev)=> prev-1)}
