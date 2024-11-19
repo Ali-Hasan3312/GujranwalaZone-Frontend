@@ -11,7 +11,6 @@ function TableHOC<T extends Object>(
     return function HOC() {
         const uniqueId = useId()
         const options: TableOptions<T> = {
-
             columns,
             data,
             initialState: {

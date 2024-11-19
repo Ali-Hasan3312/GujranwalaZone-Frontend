@@ -16,14 +16,13 @@ const Home = () => {
   if (isError) toast.error("Cannot Fetch the Products");
   return (
     <div className="home mt-[-30px] py-8 px-[5%] flex flex-col w-full h-full">
-      <section className=" w-full mx-auto h-[250px]">
+      <section className=" w-full h-[450px]">
         </section>
       <h1 className=' tracking-wide font-normal text-xl uppercase mt-12 flex flex-row justify-between items-centre'>
         Latest Products
         <Link to={"/search"} className="findMore text-base">More</Link>
       </h1>
-      <main className=" flex flex-wrap no-scrollbar  ">
-      
+      <main className="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-center w-[98%] mx-auto mt-4 no-scrollbar  ">
        {data?.products.map((i)=>(
          <ProductCard 
          key={i._id}

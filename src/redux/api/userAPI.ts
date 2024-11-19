@@ -7,8 +7,6 @@ import {
   NewUserRequest,
   UserResponse,
 } from "../types/api-types";
-
-
 export const userAPI = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({

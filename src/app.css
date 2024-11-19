@@ -11,6 +11,7 @@ body{
     user-select: none;
 }
 
+
 a{
     text-decoration: none;
     color: black;
@@ -90,7 +91,6 @@ tbody > button:last-child{
 }
 .first{
 
-    
     background-image: url("./assets/images/heads.png");
 }
 .second{
@@ -121,7 +121,7 @@ tbody > button:last-child{
 }
 
 .home > section{
-    background: url("./assets/cover.jpg") no-repeat center / cover;
+    background: url("./assets/hero_image_girl2.jpg") no-repeat center / cover;
 }
 .noScrollbar::-webkit-scrollbar{
 display: none;

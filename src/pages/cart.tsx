@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, server } from "../redux/store";
 import { addToCart, calculatePrice, discountApplied, removeCartItem } from "../redux/reducer/cartReducer";
 import axios from "axios";
-
 const Cart = () => {
   const {cartItems, subtotal, tax, total, shippingCharges, discount} = useSelector((state: RootState)=>state.cartReducer)
   const dispatch = useDispatch()
