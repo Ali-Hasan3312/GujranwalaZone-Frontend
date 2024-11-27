@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/protectedRoute.tsx";
 import { getUser } from "./redux/api/userAPI.ts";
 import { userExist, userNotExist } from "./redux/reducer/userReducer.ts";
 import { RootState } from "./redux/store.ts";
+import PrimarySearchAppBar from "./components/AppBar.tsx";
 
 // User Logged In Imports
 const Home = lazy(() => import("./pages/home"));
@@ -55,7 +56,7 @@ function App() {
 
   return (
     <Router>
-      <Header user={user} />
+      <PrimarySearchAppBar />
       <Suspense fallback={<Loader />}>
         <Routes>
           {/* Public Routes */}

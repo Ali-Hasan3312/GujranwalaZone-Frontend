@@ -15,7 +15,7 @@ const Home = () => {
   }
   if (isError) toast.error("Cannot Fetch the Products");
   return (
-    <div className="home mt-[-30px] py-8 px-[5%] flex flex-col w-full h-full">
+    <div className="home mt-[4px] py-8 px-[5%] flex flex-col w-full h-full">
       <section className=" w-full h-[450px]">
         </section>
       <h1 className=' tracking-wide font-normal text-xl uppercase mt-12 flex flex-row justify-between items-centre'>

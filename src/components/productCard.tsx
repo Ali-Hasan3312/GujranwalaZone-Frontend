@@ -9,7 +9,6 @@ interface ProductsProps{
     price: number,
     stock: number,
     handler: (cartItem: CartItem) => Id | undefined;
-
 }
 const ProductCard = ({productId,photo,name,price,stock,handler}:ProductsProps) => {
   return (
