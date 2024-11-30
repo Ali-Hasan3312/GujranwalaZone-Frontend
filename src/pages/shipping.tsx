@@ -69,11 +69,11 @@ const Shipping = () => {
   }, [cartItems, navigate]);
 
   return (
-    <div className="shipping flex flex-row justify-center items-center gap-8">
-      <button onClick={() => navigate("/cart")} className="h-9 w-9 bg-gray-800 text-white flex justify-center items-center fixed top-8 left-8 rounded-full border-none outline-none cursor-pointer shadow-lg">
+    <div className=" flex flex-row justify-center items-center gap-8 py-10">
+      <button onClick={() => navigate("/cart")} className="h-9 w-9 bg-gray-800 text-white flex justify-center items-center absolute top-28 left-8 rounded-full border-none outline-none cursor-pointer shadow-lg">
         <BiArrowBack className="biarrowback" />
       </button>
-      <div className="flex flex-col justify-center items-stretch gap-8 p-8 max-w-[450px] w-full mt-[-50px]">
+      <div className="flex flex-col bg-white rounded-md justify-center items-stretch gap-8 p-8 max-w-[450px] w-full">
         <h1 className="tracking-[1px] font-xl text-lg text-center uppercase">Shipping Address</h1>
         <input
           type="text"

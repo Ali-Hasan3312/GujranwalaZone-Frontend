@@ -1,17 +1,13 @@
 import { BiMaleFemale } from 'react-icons/bi';
-import { BsSearch } from 'react-icons/bs';
-import { FaRegBell } from 'react-icons/fa';
 import { HiTrendingDown, HiTrendingUp } from 'react-icons/hi';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import AdminSideBar from '../../components/adminSideBar';
 import { BarChart, DoughnutChart } from '../../components/charts';
 import DashboardTable from '../../components/dashboardTable';
 import { useStatsQuery } from '../../redux/api/dashboardAPI';
 import { RootState } from '../../redux/store';
 import { getLastMonths } from '../../redux/utils/features';
 
-const userImg = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJxA5cTf-5dh5Eusm0puHbvAhOrCRPtckzjA&usqp";
 const { last6Months: months } = getLastMonths();
 
 const Dashboard = () => {
@@ -29,17 +25,11 @@ const Dashboard = () => {
   const latestTransaction = stats?.latestTransaction ;
  
   return (
-    <div className='admin-container  grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 overflow-auto md:grid-cols-[1fr]'>
-      <AdminSideBar />
+   
       
-      <main className='dashboard no-scrollbar overflow-x-auto w-full xl:justify-center xl:flex-wrap'>
-        <div className=' h-10 px-2 py-4 flex-row border-b-2 border-black border-opacity-35 border-solid flex content-center items-center gap-4'>
-          <BsSearch />
-          <input type="text" placeholder='Search for data, users, docs' className=' mr-auto w-full py-4 px-0 border-none outline-none bg-inherit' />
-          <FaRegBell className=' opacity-70 text-sm'/>
-          <img src={typeof user?.photo === 'string' ? user.photo : '' || userImg} alt="User" className=' h-8 w-8 rounded-3xl' />
-        </div>
-        <section className='widget-container flex flex-row justify-between items-stretch gap-8 p-8 pr-8 pb-8 xl:justify-center xl:flex-wrap'>
+      <main className='pb-8'>
+        
+        <section className='flex justify-center py-8 gap-8 px-8'>
           <WidgetItem
             percent={changePercent?.revenue || 0}
             amount={true}
@@ -66,8 +56,8 @@ const Dashboard = () => {
             color='indigo'
           />
         </section>
-        <section className='graph-container flex flex-row gap-8 pt-0 pr-2 pb-2 pl-0 xl:justify-center xl:flex-wrap xl:p-8'>
-          <div className='bg-white rounded-lg w-full py-4 px-12'>
+        <section className='flex justify-center gap-8'>
+          <div className='bg-white w-[62%] rounded-lg py-4 px-6'>
             <h2 className=' tracking-wider font-semibold uppercase opacity-80 mt-4  mr-0 mb-1 ml-1 text-center relative bottom-2'>Revenue & Transactions</h2>
             <BarChart 
               labels={months}
@@ -80,7 +70,7 @@ const Dashboard = () => {
             />
           </div>
 
-          <div className='bg-white rounded-lg w-full max-w-64 flex flex-col justify-center gap-0 pb-4'>
+          <div className='bg-white rounded-lg flex flex-col justify-center gap-0 pb-4'>
             <h2 className=' tracking-wider font-semibold uppercase opacity-80 mx-0 mt-1 mb-1 text-center'>Inventory</h2>
             <div className=' overflow-y-auto pl-2'>
               {categoryCount?.map((i) => {
@@ -97,7 +87,7 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <section className="transaction-container flex gap-8 pt-0 pr-8 pb-8 pl-0 h-[30rem] mt-4 xl:justify-center xl:flex-wrap xl:p-8 xl:h-0">
+        <section className="flex gap-8 w-[88%] px-2 mx-auto mt-8">
           <div className="gender-chart bg-white shadow-md rounded-lg w-full max-w-80 p-4 relative">
             <h2 className=' text-center mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold'>Gender Ratio</h2>
             <DoughnutChart 
@@ -113,7 +103,7 @@ const Dashboard = () => {
           <DashboardTable data={latestTransaction!} />
         </section>
       </main>
-    </div>
+    
   )
 }
 

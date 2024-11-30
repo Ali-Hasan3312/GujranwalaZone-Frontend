@@ -48,7 +48,7 @@ const DashboardTable = ({ data = [] }: { data: DataType[] }) => {
         }))
       );
     }
-  }, [data]);
+  }, []);
 
   const Table = useMemo(
     () =>

@@ -13,7 +13,6 @@ const Cart = () => {
   const [isValidCouponCode,setIsValidCouponCode] = useState<boolean>(false)
   const incrementHandler = (cartItem: CartItem) => {
     if (cartItem.quantity >= cartItem.stock) return;
-    
     dispatch(addToCart({ ...cartItem, quantity: cartItem.quantity + 1 }));
   };
   const decrementHandler = (cartItem: CartItem) => {
@@ -58,8 +57,8 @@ const Cart = () => {
   }, [cartItems]);
   
   return (
-    <div className="Cart h-full w-full md:w-[480px] py-8 px-16 md:pr-8  md:mt-8  flex md:flex-col md:justify-center md:items-center md:ml-[-80px] justify-between gap-12">
-      <main className=" w-[60%] md:w-full md:h-full tracking-[2px] font-light uppercase text-center overflow-y-auto mt-[-130px]">
+    <div className="flex items-start justify-center w-[80%] mx-auto py-8 gap-8">
+      <main className="bg-white/90 px-4 py-4 rounded-lg tracking-[2px] font-light uppercase text-center">
         {
           cartItems.length > 0 ? (
             cartItems.map((i,idx)=>(
@@ -74,12 +73,22 @@ const Cart = () => {
           )
         }
       </main>
-      <aside className=" w-[40%] md:w-full p-12 flex  flex-col justify-center items-stretch gap-6 mt-10">
-        <p>Subtotal: Rs{subtotal}</p>
-        <p>Shipping Charges: Rs{shippingCharges}</p>
-        <p>Tax: Rs{tax}</p>
-        <p>Discount: <em className=" text-red-500"> - Rs{discount}</em> </p>
-        <p>Total: Rs{total}</p>
+      <aside className=" flex flex-col gap-4 py-8 w-[400px] px-8 rounded-lg bg-white/90">
+       <div className="flex items-center gap-4">
+       <p className=" font-semibold text-lg">Subtotal:</p><span>Rs {subtotal}</span> 
+       </div>
+       <div className="flex items-center gap-4">
+       <p className=" font-semibold text-lg">Shipping Charges:</p><span> Rs {shippingCharges}</span>
+       </div>
+       <div className="flex items-center gap-4">
+       <p className=" font-semibold text-lg">Tax:</p> <span>Rs {tax}</span>
+       </div>
+       <div className="flex items-center gap-4">
+       <p className=" font-semibold text-lg">Discount: </p><span><em className=" text-red-500"> - Rs {discount}</em> </span>
+       </div>
+       <div className="flex items-center gap-4">
+       <p className=" font-semibold text-lg">Total:</p><span> Rs {total}</span>
+       </div>
         <input className=" p-4 border border-solid border-black border-opacity-30 outline-none rounded mt-8" type="text"
         placeholder="Coupon Code"
         value={couponCode}

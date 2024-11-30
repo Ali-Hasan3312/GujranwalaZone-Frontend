@@ -63,8 +63,8 @@ const Register = () => {
   
 
   return (
-    <div className="login h-[90vh] flex flex-col items-center">
-      <main className="max-w-[350px] w-full h-[96%] px-4 py-8 shadow-[0_0_10px_rgba(0,0,0,0.384)] flex flex-col justify-center items-stretch">
+    <div className="login py-8 flex flex-col items-center">
+      <main className="max-w-[350px] w-full h-[96%] bg-white px-4 py-8 shadow-[0_0_10px_rgba(0,0,0,0.384)] flex flex-col justify-center items-stretch">
         <h1 className="tracking-[3px] uppercase text-2xl flex justify-center mb-[2rem] font-normal text-gray-700">
           Register
         </h1>

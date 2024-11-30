@@ -66,8 +66,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login h-[90vh] flex flex-col items-center">
-      <main className="max-w-[350px] w-full h-[90%] px-4 py-8 shadow-[0_0_10px_rgba(0,0,0,0.384)] flex flex-col gap justify-center items-stretch">
+    <div className="login py-8 flex flex-col items-center">
+      <main className="max-w-[350px] w-full bg-white px-4 py-12 shadow-[0_0_10px_rgba(0,0,0,0.384)] flex flex-col gap justify-center items-stretch">
         <h1 className="tracking-[3px] uppercase text-2xl flex justify-center mb-[2rem] font-normal text-gray-700">
           Login
         </h1>

@@ -1,5 +1,4 @@
 import { useState } from "react"
-import AdminSideBar from "../../components/adminSideBar"
 
 const Toss = () => {
   const [angle, setAngle] = useState<number>(0)
@@ -12,9 +11,7 @@ const Toss = () => {
     }
   }
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
-        <AdminSideBar />
-        <main className=" bg-white p-16">
+    <main className=" p-8">
             <h1 className=" mb-12 ml-8 font-bold text-2xl">Toss</h1>
             <section className=" flex flex-col items-center  gap-8 h-full">
                 <article className="tosscoin m-8 h-60 w-60 relative cursor-pointer " onClick={flipCoin} style={{transform: `rotateY(${angle}deg)`}}>
@@ -25,7 +22,7 @@ const Toss = () => {
                 </article>
             </section>
         </main>
-    </div>
+   
   )
 }
 

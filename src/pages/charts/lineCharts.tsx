@@ -1,11 +1,10 @@
 import { useSelector } from "react-redux";
-import AdminSideBar from "../../components/adminSideBar"
+import { toast } from "react-toastify";
 import { LineChart } from "../../components/charts";
 import { useLineQuery } from "../../redux/api/dashboardAPI";
 import { RootState } from "../../redux/store";
 import { CustomError } from "../../redux/types/api-types";
 import { getLastMonths } from "../../redux/utils/features";
-import { toast } from "react-toastify";
 const { last12Months: months } = getLastMonths();
 const LineCharts = () => {
   const { user } = useSelector((state: RootState) => state.userReducer);
@@ -22,11 +21,9 @@ const LineCharts = () => {
     toast.error(err.data.message);
   }
     return (
-        <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
-            <AdminSideBar />
-            <main className=" bg-white overflow-y-auto p-16 sm:p-0">
-                <h1 className=" mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-centre">Line Charts</h1>
-                <section className=" w-[80%] my-16 mx-auto sm:my-0 sm:mx-auto">
+      <main className=" p-8">
+                <h1 className=" mb-12 ml-8 font-bold text-2xl">Line Charts</h1>
+                <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
           <LineChart
             data={users}
             label="Users"
@@ -36,7 +33,7 @@ const LineCharts = () => {
           />
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Active Users</h2>
         </section>
-        <section className=" w-[80%] my-16 mx-auto">
+        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
           <LineChart
             data={products}
             backgroundColor={"hsla(269,80%,40%,0.4)"}
@@ -47,7 +44,7 @@ const LineCharts = () => {
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Total Products (SKU)</h2>
         </section>
 
-        <section className=" w-[80%] my-16 mx-auto">
+        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
           <LineChart
             data={revenue}
             backgroundColor={"hsla(129,80%,40%,0.4)"}
@@ -58,7 +55,7 @@ const LineCharts = () => {
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Total Revenue</h2>
         </section>
 
-        <section className=" w-[80%] my-16 mx-auto">
+        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
           <LineChart
             data={discount}
             backgroundColor={"hsla(29,80%,40%,0.4)"}
@@ -69,7 +66,7 @@ const LineCharts = () => {
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Discount Allotted</h2>
         </section>
             </main>
-        </div>
+       
       )
 }
 

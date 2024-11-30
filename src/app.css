@@ -9,6 +9,8 @@ body{
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(182,234,237,1) 100%);
 }
 
 
@@ -91,10 +93,10 @@ tbody > button:last-child{
 }
 .first{
 
-    background-image: url("./assets/images/heads.png");
+    background-image: url("./assets/images/One Rupee Back.jpg");
 }
 .second{
-    background-image: url("./assets/images/tails.png");
+    background-image: url("./assets/images/One Rupee front.jpg");
     transform: rotateY(-180deg);
 }
 /* .coupon-form{
@@ -142,7 +144,7 @@ display: none;
 .loading {
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: inherit;
     display: grid;
     place-items: center;
     max-width: 100%;
@@ -170,3 +172,79 @@ display: none;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
+.animatedBtn::before{
+    content: '';
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #14b8a6;
+    z-index: -1;
+    transform: translateX(-100%);
+    transition: all 0.5s ease 0s;
+}
+.animatedBtn:hover::before{
+    transform: translateX(0);
+}
+.productCard{
+    background: rgb(34,193,195);
+background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(182,234,237,0.7847514005602241) 100%);
+}
+.addToCart::before{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+height: 50%;
+width: 100%;
+background-color: #14b8a6;
+transition: all 0.4s ease;
+}
+.addToCart:hover::before{
+    transform: translateY(-100%);
+}
+.addToCart::after{
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+height: 50%;
+width: 100%;
+background-color: #14b8a6;
+transition: all 0.5s ease;
+}
+.addToCart:hover::after{
+    transform: translateY(100%);
+   
+}
+.viewBtn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #14b8a6;
+    transition: all 0.5s ease;
+    transform: translateX(-100%);
+}
+.viewBtn:hover::before{
+    transform: translateX(-50%);
+    
+}
+.viewBtn::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #14b8a6;
+    transition: all 0.5s ease;
+    transform: translateX(100%);
+}
+.viewBtn:hover::after{
+    transform: translateX(50%);
+    
+}

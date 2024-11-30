@@ -15,6 +15,7 @@ export type Product = {
   stock: number;
   category: string;
   photo: string;
+  description:string;
   _id: string;
 };
 

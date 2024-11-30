@@ -37,8 +37,22 @@ const OrderDetails = () => {
   } = data?.order || defaultData;
 
   return (
-    <main className="bg-gray-100 no-scrollbar overflow-y-auto w-full md:gap-8 overflow-auto flex-wrap flex flex-row  md:flex-col md:items-center md:justify-center justify-center p-16">
-      <article className="md:h-[80vh] h-[100vh] lg:mr-[-170px] relative p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
+    <main className="flex items-start px-8 py-8 w-3/4 mx-auto gap-8">
+      <section className=" p-8 w-[600px] bg-white/90 rounded shadow-gray-700 shadow-sm">
+        <h2 className="tracking-wider uppercase text-center font-semibold">Order Items</h2>
+        {orderItems.map((i) => (
+          <ProductCard
+            key={i._id} // Add the key prop here
+            name={i.name}
+            photo={i.photo}
+            price={i.price}
+            quantity={i.quantity}
+            productId={i._id}
+            _id={i._id}
+          />
+        ))}
+      </section>
+      <article className=" bg-white/90 px-8 py-8 rounded shadow-gray-700 shadow-sm">
         <h1 className="text-center tracking-wider font-bold uppercase">Order Info</h1>
         <h5 className="mt-8 ml-2 text-lg font-semibold">User Info</h5>
         <p className="m-1">Name: {name}</p>
@@ -69,20 +83,7 @@ const OrderDetails = () => {
           </span>
         </p>
       </article>
-      <section className="md:h-[50vh] h-[100vh] p-8 w-full max-w-96 bg-white rounded shadow-gray-700 shadow-sm m-auto">
-        <h2 className="tracking-wider uppercase text-center font-semibold">Order Items</h2>
-        {orderItems.map((i) => (
-          <ProductCard
-            key={i._id} // Add the key prop here
-            name={i.name}
-            photo={i.photo}
-            price={i.price}
-            quantity={i.quantity}
-            productId={i._id}
-            _id={i._id}
-          />
-        ))}
-      </section>
+      
     </main>
   )
 }
@@ -94,8 +95,8 @@ const ProductCard = ({
   quantity,
   productId,
 }: OrderItem) => (
-  <div className="transaction-product-card mt-6">
-    <img className=" h-40 w-40" src={`${photo}`} alt={name} />
+  <div className="flex items-center justify-center flex-col gap-2 mt-4">
+    <img className=" h-40 w-40 rounded-md" src={`${photo}`} alt={name} />
     <Link to={`/product/${productId}`}>{name}</Link>
     <span>
       ₹{price} X {quantity} = ₹{price * quantity}

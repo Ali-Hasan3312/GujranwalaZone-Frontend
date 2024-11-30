@@ -2,7 +2,6 @@ import { ReactElement, useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Column } from 'react-table'
-import AdminSideBar from '../../components/adminSideBar'
 import TableHOC from '../../components/tableHOC'
 import { useAllOrdersQuery } from '../../redux/api/orderAPI'
 import { RootState } from '../../redux/store'
@@ -80,14 +79,12 @@ const Transaction = () => {
     TableHOC<DataType>(
       columns,
       rows,
-      "Transactions",
+      "Orders",
       true
     ), [rows])
 
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
-      <AdminSideBar />
-
+    <div className=' p-8'>
       <main className='overflow-y-auto w-full'>
         {Table()}
       </main>

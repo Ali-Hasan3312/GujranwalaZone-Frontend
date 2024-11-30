@@ -1,13 +1,10 @@
 import { ReactElement, useEffect, useMemo, useState } from 'react'
 import { FaTrash } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { Column } from 'react-table'
-import AdminSideBar from '../../components/adminSideBar'
 import TableHOC from '../../components/tableHOC'
 import { useAllUsersQuery, useDeleteUserMutation } from '../../redux/api/userAPI'
 import { RootState } from '../../redux/store'
-import { responseToast } from '../../redux/utils/features'
 
 interface DataType{
   photo: ReactElement,
@@ -46,13 +43,13 @@ interface DataType{
 const Customers = () => {
   const user = useSelector((state:RootState)=>state.userReducer.user)
   const {data} = useAllUsersQuery(user?._id!)
-  const navigate = useNavigate()
+  
   const [rows, setRows] = useState<DataType[]>([]);
   const [deleteUser] = useDeleteUserMutation()
   const deleteHandler = async(userId: string)=>{
-    const res = await deleteUser({ userId, adminUserId: user?._id! });
+     await deleteUser({ userId, adminUserId: user?._id! });
     
-      responseToast(res, navigate, "/admin/customers");
+      
     
   }
   useEffect(() => {
@@ -74,15 +71,15 @@ const Customers = () => {
     TableHOC<DataType>(
       columns,
       rows,
-      "Customers",
+      "All Roles",
       rows.length > 6
     ),[columns, rows]
   )
   return (
-    <div className='grid grid-cols-[20%_80%] gap-4 h-screen pr-4 bg-gray-100 lg:overflow-auto md:grid-cols-[1fr]'>
-    <AdminSideBar />
+    <div className=''>
     
-    <main className=' overflow-y-auto w-full'>
+    
+    <main className=' p-8'>
      {Table()}
     </main>
     </div>

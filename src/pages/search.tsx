@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react"
-import { HiMenuAlt4 } from "react-icons/hi"
-import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import ProductCard from "../components/productCard"
-import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI"
-import { addToCart } from "../redux/reducer/cartReducer"
-import { CustomError } from "../redux/types/api-types"
-import { CartItem } from "../redux/types/types"
+import { useDispatch } from "react-redux";
+import ProductCard from "../components/productCard";
+import { useCategoriesQuery, useSearchProductsQuery } from "../redux/api/productAPI";
+import { addToCart } from "../redux/reducer/cartReducer";
+import { CustomError } from "../redux/types/api-types";
+import { CartItem } from "../redux/types/types";
 
 const Search = () => {
   const {
@@ -31,6 +30,8 @@ const Search = () => {
     page,
     price: maxPrice,
   });
+  
+  
   const dispatch = useDispatch();
   const addToCartHandler = (cartItem: CartItem) => {
     if (cartItem.stock < 1) return toast.error("Out of Stock");
@@ -68,24 +69,21 @@ useEffect(() => {
 }, []);
   return (
     <>
-    {phoneActive && (
-      <button id="hamburger" onClick={() => setShowModal(true)} className=' grid place-items-center h-12 w-12 md:h-6 md:w-6 border-none outline-none cursor-pointer text-blue-500 bg-opacity-100 fixed top-4 left-4 text-3xl bg-white rounded-full z-[9]'>
-        <HiMenuAlt4 />
-      </button>
-    )}
-    <div className="search overflow-auto md:pl-6 md:w-[420px] p-8 flex justify-start items-stretch gap-8 min-h-[93.5vh]">
+    
+    <div className="search p-8 flex gap-8 min-h-[93.5vh]">
       <aside style={
           phoneActive
             ? {
-                width: "20rem",
-                height: "50vh",
+                width: "16rem",
+                height: "80vh",
                 position: "fixed",
                 top: 0,
                 left: showModal ? "0" : "-20rem",
                 transition: "all 0.5s",
+                background:"white"
               }
             : {}
-        } className='min-w-60 shadow-[2px_5px_10px_rgba(0,0,0,0.247)] p-8 flex flex-col justify-start items-stretch gap-4  md:bg-white md:p-4 md:z-10 md:overflow-y-auto md:overflow-hidden'>
+        } className='min-w-60 shadow-[2px_5px_10px_rgba(0,0,0,0.247)] p-8 flex flex-col justify-start items-stretch gap-4  bg-white/85 z-10 md:overflow-y-auto md:overflow-hidden h-[70vh]'>
         <h2 className=" tracking-[3px] uppercase text-xl font-normal text-gray-700">Filters</h2>
         <div>
           <h4 className=" font-semibold">Sort</h4>
@@ -124,15 +122,22 @@ useEffect(() => {
           </button>
         )}
       </aside>
-      <main className=" w-full md:w-[360px] px-8">
+      <main className=" w-full px-8">
+        <div className="flex justify-between">
         <h1 className=" tracking-[3px] uppercase text-2xl font-normal text-gray-700">Products</h1>
+        {phoneActive && (
+      <button id="hamburger" onClick={() => setShowModal(true)} className='flex items-center justify-center border-none outline-none cursor-pointer text-white bg-blue-600 font-medium px-3 py-2 rounded-md'>
+        Filter Products
+      </button>
+    )}
+        </div>
         <input type="text"
         placeholder="Search by name"
         value={search}
         onChange={(e)=> setSearch(e.target.value)}
         className=" p-4 outline-none bg-inherit w-full rounded m-4 text-lg block"
         />
-        <div className=" flex justify-start items-start flex-wrap overflow-y-auto no-scrollbar h-[70%]">
+        <div className="flex-grow grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3">
         {searchedData?.products.map((i) => (
               <ProductCard 
                 key={i._id}
