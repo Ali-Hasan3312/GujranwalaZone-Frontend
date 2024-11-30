@@ -91,7 +91,7 @@ const Orders = () => {
   return (
     <div className=" py-8">
       <h1 className=" tracking-[3px] uppercase text-2xl text-center font-normal text-gray-700">Orders</h1>
-    <Paper sx={{  width: '72%', mx:'auto', marginTop:'20px' }}>
+    <Paper sx={{ width:'90%', mx:'auto', marginTop:'20px' }}>
       <DataGrid
         rows={rows}
         columns={columns}

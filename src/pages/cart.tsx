@@ -57,7 +57,7 @@ const Cart = () => {
   }, [cartItems]);
   
   return (
-    <div className="flex items-start justify-center w-[80%] mx-auto py-8 gap-8">
+    <div className="flex lg:flex-row flex-col items-start justify-center w-[80%] mx-auto py-8 gap-8">
       <main className="bg-white/90 px-4 py-4 rounded-lg tracking-[2px] font-light uppercase text-center">
         {
           cartItems.length > 0 ? (

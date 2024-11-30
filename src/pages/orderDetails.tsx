@@ -37,8 +37,8 @@ const OrderDetails = () => {
   } = data?.order || defaultData;
 
   return (
-    <main className="flex items-start px-8 py-8 w-3/4 mx-auto gap-8">
-      <section className=" p-8 w-[600px] bg-white/90 rounded shadow-gray-700 shadow-sm">
+    <main className="flex lg:flex-row flex-col items-start px-8 py-8 w-3/4 mx-auto gap-8">
+      <section className=" lg:p-8 py-4 px-2 w-[300px] lg:w-[600px] bg-white/90 rounded shadow-gray-700 shadow-sm">
         <h2 className="tracking-wider uppercase text-center font-semibold">Order Items</h2>
         {orderItems.map((i) => (
           <ProductCard

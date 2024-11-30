@@ -33,11 +33,11 @@ const ProductCard = ({productId,photo,name,price,stock,handler}:ProductsProps) =
         exit={{x:'-70px',opacity:'0'}}
         className=" font-bold text-lg">Rs {price}</motion.span>
         <div className="flex items-center gap-4 mt-2">
-            <button onClick={()=>handler({ productId, price, name, photo, stock, quantity: 1 })} className="addToCart relative text-white hover:text-teal-500 hover:border hover:border-teal-500 lg:text-lg text-sm w-28 h-12 rounded overflow-hidden">
+            <button onClick={()=>handler({ productId, price, name, photo, stock, quantity: 1 })} className="addToCart relative text-white hover:text-teal-500 hover:border hover:border-teal-500 lg:text-lg text-sm h-8 w-[84px] lg:w-28 lg:h-12 rounded overflow-hidden">
               <span
               className="relative z-10">Add to cart</span>
             </button>
-            <Link to={`/productDetails/${productId}`} className="viewBtn flex items-center justify-center hover:text-white hover:border-none relative border border-teal-500 lg:text-lg text-sm text-teal-500 overflow-hidden h-8 w-16"><span className="relative z-10">View</span></Link>
+            <Link to={`/productDetails/${productId}`} className="viewBtn flex items-center justify-center hover:text-white hover:border-none relative border border-teal-500 lg:text-lg text-sm text-teal-500 overflow-hidden h-8 w-12 lg:w-16"><span className="relative z-10">View</span></Link>
         </div>
     </div>
   )

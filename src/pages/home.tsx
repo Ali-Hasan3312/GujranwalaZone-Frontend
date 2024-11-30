@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <div className=" mt-[4px] relative py-8 px-[5%] flex flex-col w-full h-full rounded-lg">
      <div className="">
-     <GrPrevious onClick={decrementHandler} className="absolute top-[20%] left-4 opacity-50 hover:opacity-100 transition-all duration-300 text-4xl cursor-pointer" />   
+     <GrPrevious onClick={decrementHandler} className="absolute top-[20%] left-4 opacity-50 hover:opacity-100 transition-all duration-300 text-2xl lg:text-4xl cursor-pointer" />   
      <div>
       {next==0 && (
         <HeroSlider title="New Arrival" heading="New Design Bluetooth Speaker" image="https://flone.jamstacktemplates.dev/assets/img/slider/single-slide-3.png" />
@@ -46,7 +46,7 @@ const Home = () => {
         <HeroSlider title="Smart Products" heading="Summer Offer 2024 Collection" image="https://flone.jamstacktemplates.dev/assets/img/slider/single-slide-6.png" />
       )}
      </div>
-     <GrNext onClick={incrementHandler} className="absolute top-[20%] right-4 opacity-50 hover:opacity-100 transition-all duration-300 text-4xl cursor-pointer" />   
+     <GrNext onClick={incrementHandler} className="absolute top-[20%] right-4 opacity-50 hover:opacity-100 transition-all duration-300 text-2xl lg:text-4xl cursor-pointer" />   
 
      </div>
       <h1 className=' tracking-wide font-normal text-xl uppercase mt-12 flex flex-row justify-between items-centre'>
