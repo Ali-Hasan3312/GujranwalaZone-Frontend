@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Divider } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -27,7 +28,6 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import logo from "../assets/logo-removebg-preview.png";
 import { RootState } from '../redux/store';
-import { Divider, Typography } from '@mui/material';
 
    
 const logoutHandler = async() => {
