@@ -27,6 +27,7 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase';
 import logo from "../assets/logo-removebg-preview.png";
 import { RootState } from '../redux/store';
+import { Divider, Typography } from '@mui/material';
 
    
 const logoutHandler = async() => {
@@ -101,6 +102,14 @@ export default function PrimarySearchAppBar() {
   
  const DrawerList = (
   <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <ListItem>
+     <Link to={"/"} className=' w-full'>
+     <ListItemButton>
+          <img src={logo} className='h-16' alt="" />
+      </ListItemButton>
+     </Link>
+    </ListItem>
+    <Divider />
     <List>
       {SidebarList.map((item) => (
         <ListItem key={item.id} disablePadding>
