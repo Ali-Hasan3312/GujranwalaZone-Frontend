@@ -7,6 +7,7 @@ import TableHOC from '../../components/tableHOC';
 import { useAllProductsQuery } from '../../redux/api/productAPI';
 import { RootState } from '../../redux/store';
 import { CustomError } from '../../redux/types/api-types';
+import { useNavigate } from 'react-router-dom';
 
 interface DataType {
   photo: ReactElement,
@@ -41,9 +42,7 @@ const columns: Column<DataType>[] = [
 
 const Products = () => {
   const user = useSelector((state: RootState) => state.userReducer.user);
-
-  
-  
+  const navigate = useNavigate()
   const { isError, error, data } = useAllProductsQuery(user?._id!)
   const [rows, setRows] = useState<DataType[]>([]);
 
@@ -60,7 +59,7 @@ const Products = () => {
           name: i.name,
           price: i.price,
           stock: i.stock,
-          action: <Button className=''>View</Button>,
+          action: <Button onClick={()=>navigate(`/admin/product/${i._id}`)} className=''>View</Button>,
         }))
       );
     }
@@ -78,7 +77,7 @@ const Products = () => {
   
    <div className='relative'>
      
-     <main className=' p-12 '>
+     <main className=' lg:p-12 p-4 '>
        {Table()}
      </main>
      

@@ -84,7 +84,7 @@ const Transaction = () => {
     ), [rows])
 
   return (
-    <div className=' p-8'>
+    <div className=' lg:p-8 p-4'>
       <main className='overflow-y-auto w-full'>
         {Table()}
       </main>

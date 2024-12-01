@@ -37,12 +37,10 @@ const Footer = () => {
         <div className=" text-white">
             <Link to={"/search"} onClick={ScrollTop} className="text-base md:text-xl font-medium hover:text-blue-500 hover:cursor-pointer transition-all duration-300">Products</Link>
         </div>
-        <div className=" text-white">
-            <Link to={"/about"} onClick={ScrollTop} className="text-base md:text-xl -mt-0 md:-mt-8 font-medium hover:text-blue-500 hover:cursor-pointer transition-all duration-300 text-nowrap">About us</Link>
-        </div>
+       
        
         <div className=" text-white">
-            <Link to={"/touch"} onClick={ScrollTop} className="text-base md:text-xl -mt-0 md:-mt-8 font-medium hover:text-blue-500 hover:cursor-pointer transition-all duration-300 text-nowrap">Get In Touch</Link>
+            <Link to={"/contact"} onClick={ScrollTop} className="text-base md:text-xl -mt-0 md:-mt-8 font-medium hover:text-blue-500 hover:cursor-pointer transition-all duration-300 text-nowrap">Contact</Link>
         </div>
        
         <div className=" text-white">

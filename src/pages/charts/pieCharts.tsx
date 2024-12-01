@@ -22,8 +22,8 @@ const PieCharts = () => {
     <main className=" p-8">
         <h1 className="mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-centre">Pie & Doughnut Charts</h1>
         
-       <div className=' grid grid-cols-2'>
-       <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4 ">
+       <div className=' grid lg:grid-cols-2 grid-cols-1'>
+       <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4 ">
           <div className='max-w-72 mx-auto'>
             <PieChart 
               labels={["Processing", "Shipped", "Delivered"]}
@@ -39,7 +39,7 @@ const PieCharts = () => {
           <h2 className='uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Order Fulfillment Ratio</h2>
         </section>
 
-        <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4 ">
+        <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4 ">
         <div className='max-w-72 mx-auto'>
             <DoughnutChart
               labels={categories?.map((i) => Object.keys(i)[0])}
@@ -56,7 +56,7 @@ const PieCharts = () => {
           <h2 className='uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Products Categories Ratio</h2>
         </section>
 
-        <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4 ">
+        <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4 ">
         <div className='max-w-72 mx-auto'>
             <DoughnutChart
               labels={["In Stock", "Out Of Stock"]}
@@ -70,7 +70,7 @@ const PieCharts = () => {
           <h2 className='uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Stock Availability</h2>
         </section>
 
-        <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4 ">
+        <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4 ">
         <div className='max-w-72 mx-auto'>
             <DoughnutChart
               labels={[
@@ -101,7 +101,7 @@ const PieCharts = () => {
           <h2 className='uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Revenue Distribution</h2>
         </section>
 
-        <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4 ">
+        <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4 ">
           <div className='max-w-72 mx-auto'>
             <PieChart
               labels={[
@@ -121,7 +121,7 @@ const PieCharts = () => {
           <h2 className='uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Users Age Group</h2>
         </section>
 
-        <section className="w-[80%] my-16 mx-auto bg-white/95 rounded-lg p-4">
+        <section className="w-[80%] my-4 lg:my-16 mx-auto bg-white/95 rounded-lg p-4">
         <div className='max-w-72 mx-auto'>
             <DoughnutChart
               labels={["Admin", "Customers"]}

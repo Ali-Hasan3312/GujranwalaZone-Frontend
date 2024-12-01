@@ -66,8 +66,11 @@ const TransactionManagement = () => {
   };
   
   return (
-    <main className="flex items-start justify-center gap-8 mx-auto py-8">
-     <section className=" bg-white py-4 px-4 shadow-gray-700 shadow-sm flex flex-col items-center justify-center gap-4 rounded">
+    <main className="flex lg:flex-row  flex-col px-8 items-center lg:items-start justify-center gap-8 py-8">
+     <section className=" bg-white relative py-4 px-4 shadow-gray-700 shadow-sm flex flex-col items-center justify-center gap-4 rounded">
+     <button className=" bg-gray-800 text-white absolute hover:bg-red-600 transition-all duration-300 -top-2 -right-2 h-10 w-10 rounded-full flex items-center justify-center" onClick={deleteHandler}>
+                <FaTrash className=""/>
+              </button>
         <h2 className=" tracking-wider uppercase text-center font-semibold">Order Items</h2>
         {
           orderItems.map((i) => (
@@ -83,10 +86,9 @@ const TransactionManagement = () => {
           ))
         }
       </section>
-      <article className="bg-white rounded px-8 w-[40vw] py-2 shadow-gray-700 shadow-sm">
-      <button className="product-delete-btn bg-gray-800 text-white text-[1.2rem] w-[2.5rem] h-[2.5rem] flex items-center justify-center rounded-full cursor-pointer border-none absolute -top-[1.2rem] -right-[1.2rem]" onClick={deleteHandler}>
-                <FaTrash className=""/>
-              </button>
+     
+      <article className="bg-white rounded  max-w-[500px] px-8 py-2 shadow-gray-700 shadow-sm">
+      
       <h1 className=" text-center tracking-wider font-bold uppercase">Order Info</h1>
           <h5 className=" mt-8 ml-2 text-lg font-semibold">User Info</h5>
           <p className=" m-1">Name: {name}</p>

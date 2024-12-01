@@ -22,8 +22,8 @@ const LineCharts = () => {
   }
     return (
       <main className=" p-8">
-                <h1 className=" mb-12 ml-8 font-bold text-2xl">Line Charts</h1>
-                <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
+                <h1 className=" mb-4 lg:mb-12 ml-8 font-bold text-2xl">Line Charts</h1>
+                <section className=" lg:w-[80%] w-[98%] lg:my-16 my-8 mx-auto bg-white/95 p-4 lg:p-8 rounded-lg">
           <LineChart
             data={users}
             label="Users"
@@ -33,7 +33,7 @@ const LineCharts = () => {
           />
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Active Users</h2>
         </section>
-        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
+        <section className=" lg:w-[80%] w-[98%] lg:my-16 my-8 mx-auto bg-white/95 p-4 lg:p-8 rounded-lg">
           <LineChart
             data={products}
             backgroundColor={"hsla(269,80%,40%,0.4)"}
@@ -44,7 +44,7 @@ const LineCharts = () => {
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Total Products (SKU)</h2>
         </section>
 
-        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
+        <section className=" lg:w-[80%] w-[98%] lg:my-16 my-8 mx-auto bg-white/95 p-4 lg:p-8 rounded-lg">
           <LineChart
             data={revenue}
             backgroundColor={"hsla(129,80%,40%,0.4)"}
@@ -55,7 +55,7 @@ const LineCharts = () => {
           <h2 className=' uppercase text-lg text-gray-700 text-center mt-4 tracking-wider'>Total Revenue</h2>
         </section>
 
-        <section className=" w-[80%] my-16 mx-auto bg-white/95 p-8 rounded-lg">
+        <section className=" lg:w-[80%] w-[98%] lg:my-16 my-8 mx-auto bg-white/95 p-4 lg:p-8 rounded-lg">
           <LineChart
             data={discount}
             backgroundColor={"hsla(29,80%,40%,0.4)"}

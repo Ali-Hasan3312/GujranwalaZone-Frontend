@@ -122,11 +122,11 @@ useEffect(() => {
           </button>
         )}
       </aside>
-      <main className=" w-full px-8">
+      <main className=" w-full px-2 lg:px-8">
         <div className="flex justify-between">
-        <h1 className=" tracking-[3px] uppercase text-2xl font-normal text-gray-700">Products</h1>
+        <h1 className=" tracking-[3px] uppercase text-lg lg:text-2xl font-normal text-gray-700">Products</h1>
         {phoneActive && (
-      <button id="hamburger" onClick={() => setShowModal(true)} className='flex items-center justify-center border-none outline-none cursor-pointer text-white bg-blue-600 font-medium px-3 py-2 rounded-md'>
+      <button id="hamburger" onClick={() => setShowModal(true)} className='flex items-center justify-center border-none outline-none cursor-pointer text-white bg-blue-600 font-medium px-2 lg:text-base text-sm lg:px-3 py-2 rounded-md'>
         Filter Products
       </button>
     )}

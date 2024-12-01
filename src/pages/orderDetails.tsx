@@ -35,7 +35,6 @@ const OrderDetails = () => {
     discount,
     shippingCharges,
   } = data?.order || defaultData;
-
   return (
     <main className="flex lg:flex-row flex-col items-start px-8 py-8 w-3/4 mx-auto gap-8">
       <section className=" lg:p-8 py-4 px-2 w-[300px] lg:w-[600px] bg-white/90 rounded shadow-gray-700 shadow-sm">

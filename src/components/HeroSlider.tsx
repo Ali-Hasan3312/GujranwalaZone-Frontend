@@ -8,7 +8,7 @@ image:string;
 const HeroSlider = ({title,heading,image}:HeroProps) => {
     const navigate = useNavigate()
   return (
-    <div className="flex lg:flex-row flex-col items-center justify-between px-8 h-[90vh]">
+    <div className="flex lg:flex-row flex-col items-center justify-center lg:gap-0 gap-8 lg:justify-between px-8">
         <div className="flex flex-col gap-4 items-start text-gray-700">
             <motion.span
             initial={{y:'20px',opacity:'0%'}}
@@ -21,7 +21,7 @@ const HeroSlider = ({title,heading,image}:HeroProps) => {
             animate={{x:'0',opacity:'100%'}}
             transition={{duration:0.7}}
             exit={{opacity:'0%'}}
-            className="font-semibold text-2xl lg:text-[44px] tracking-wide w-[70%]">{heading}</motion.h1>
+            className="font-semibold text-2xl lg:text-[44px] tracking-wide leading-normal w-[70%]">{heading}</motion.h1>
             <motion.button
             initial={{y:'20px',opacity:'0%'}}
             animate={{y:'0',opacity:'100%'}}

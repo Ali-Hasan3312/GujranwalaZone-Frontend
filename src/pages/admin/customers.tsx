@@ -76,13 +76,13 @@ const Customers = () => {
     ),[columns, rows]
   )
   return (
-    <div className=''>
+   
     
     
-    <main className=' p-8'>
+    <main className=' lg:p-8 p-4'>
      {Table()}
     </main>
-    </div>
+   
   )
 }
 export default Customers

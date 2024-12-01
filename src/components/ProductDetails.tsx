@@ -11,10 +11,10 @@ const ProductDetails = () => {
   return (
     
     <main className=" pb-8">
-       <div className="flex items-center justify-center gap-48">
+       <div className="flex lg:flex-row flex-col items-center justify-center gap-12 lg:gap-48">
        <div className="flex flex-col items-center ">
             <img src={product?.photo} alt={product?.name} />
-            <div className="h-20 w-20 flex items-center justify-center border border-teal-600 cursor-pointer bg-white/70 rounded-lg">
+            <div className="h-20 w-20 lg:mt-0 -mt-16 flex items-center justify-center border border-teal-600 cursor-pointer bg-white/70 rounded-lg">
                 <img src={product?.photo} className="h-full" alt={product?.name} />
             </div>
         </div>
@@ -51,7 +51,7 @@ const ProductDetails = () => {
         </div>
         </div>
        </div>
-     <section className=" px-20 mt-10">
+     <section className=" px-4 lg:px-20 mt-10">
         <h4 className="font-semibold text-xl">Description:</h4>
         <p className="mt-2">{product?.description}</p>
         </section>  

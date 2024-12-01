@@ -23,9 +23,9 @@ const BarCharts = () => {
   return (
    
        
-        <main className=" p-8">
-            <h1 className=" mb-12 ml-8 font-bold text-2xl sm:m-0 sm:text-center">Bar Charts</h1>
-            <section className=" w-[80%] my-4 bg-white p-8 rounded-lg mx-auto">
+        <main className=" lg:p-8 p-2">
+            <h1 className=" lg:mb-12 mb-4 ml-8 font-bold text-2xl sm:text-center">Bar Charts</h1>
+            <section className=" lg:w-[80%] w-[94%] my-4 bg-white p-4 lg:p-8 rounded-lg mx-auto">
                 <BarChart
             data_1={products}
             data_2={users}
@@ -36,7 +36,7 @@ const BarCharts = () => {
             bg_color2={`hsl(360,90%,90%)`}/>
             <h2 className="uppercase my-8 text-center tracking-[2px] font-normal sm:text-sm sm:tracking-tight">top selling products & customers</h2>
             </section>
-            <section className=" w-[80%] my-4 mt-8 bg-white p-8 rounded-lg mx-auto">
+            <section className="mt-8 lg:w-[80%] w-[94%] my-4 bg-white p-4 lg:p-8 rounded-lg mx-auto">
             <BarChart
             horizontal={true}
             data_1={orders}

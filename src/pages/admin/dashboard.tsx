@@ -29,7 +29,7 @@ const Dashboard = () => {
       
       <main className='pb-8'>
         
-        <section className='flex justify-center py-8 gap-8 px-8'>
+        <section className='flex lg:flex-row flex-col items-center justify-center py-8 gap-8 px-8'>
           <WidgetItem
             percent={changePercent?.revenue || 0}
             amount={true}
@@ -56,8 +56,8 @@ const Dashboard = () => {
             color='indigo'
           />
         </section>
-        <section className='flex justify-center gap-8'>
-          <div className='bg-white w-[62%] rounded-lg py-4 px-6'>
+        <section className='flex lg:flex-row flex-col lg:px-8 lg:items-start items-center justify-center gap-8'>
+          <div className='bg-white lg:w-[62%] w-[92%] rounded-lg px-2 py-4 lg:px-6'>
             <h2 className=' tracking-wider font-semibold uppercase opacity-80 mt-4  mr-0 mb-1 ml-1 text-center relative bottom-2'>Revenue & Transactions</h2>
             <BarChart 
               labels={months}
@@ -70,7 +70,7 @@ const Dashboard = () => {
             />
           </div>
 
-          <div className='bg-white rounded-lg flex flex-col justify-center gap-0 pb-4'>
+          <div className='bg-white lg:w-[42%] w-[92%] rounded-lg px-2 py-4 lg:px-6'>
             <h2 className=' tracking-wider font-semibold uppercase opacity-80 mx-0 mt-1 mb-1 text-center'>Inventory</h2>
             <div className=' overflow-y-auto pl-2'>
               {categoryCount?.map((i) => {
@@ -87,8 +87,8 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <section className="flex gap-8 w-[88%] px-2 mx-auto mt-8">
-          <div className="gender-chart bg-white shadow-md rounded-lg w-full max-w-80 p-4 relative">
+        <section className="flex lg:flex-row flex-col gap-8 w-[94%] lg:w-[88%] px-2 mx-auto mt-8">
+          <div className="gender-chart bg-white shadow-md rounded-lg w-full p-4 relative">
             <h2 className=' text-center mt-6 mx-0 mb-8 tracking-[0.2rem] uppercase font-semibold'>Gender Ratio</h2>
             <DoughnutChart 
               labels={["Female","Male"]} 
